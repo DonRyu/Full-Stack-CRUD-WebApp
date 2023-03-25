@@ -45,9 +45,11 @@ const ProductFormInDrawer = ({ title, productNumber }) => {
           method: "PUT",
           path: "put",
         })
-      ).then((res)=>{
-        console.log('res',res.payload)
-      })
+      ).then((res) => {
+        if (res.payload.msg) {
+          dispatch(product({ path: "get", data: {}, method: "GET" }));
+        }
+      });
     }
     setVisible(false);
     form.resetFields();

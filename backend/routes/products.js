@@ -66,9 +66,8 @@ router.put("/put", (req, res) => {
     }
   });
   const jsonString = JSON.stringify(newArr);
-  fs.writeFile(filePath, jsonString, (err, jsonData) => {
-    res.status(200).send(jsonData);
-  });
+  fs.writeFileSync(filePath, jsonString);
+  res.status(200).send({msg:'Success'});
 });
 
 router.delete("/delete", (req, res) => {
