@@ -1,7 +1,20 @@
 import React from "react";
-import { Button, Drawer, Form, Row, Col, Input, Select } from "antd";
-import { labels , MethodologyMap} from "../Labels";
-import { PlusOutlined, SettingOutlined } from "@ant-design/icons";
+import {
+  Button,
+  Drawer,
+  Form,
+  Row,
+  Col,
+  Input,
+  Select,
+  DatePicker,
+} from "antd";
+import { labels, MethodologyMap } from "../Labels";
+import {
+  PlusOutlined,
+  SettingOutlined,
+  MinusCircleOutlined,
+} from "@ant-design/icons";
 const { Option } = Select;
 
 // "productNumber": "76237-279",
@@ -25,7 +38,9 @@ const ProductFormInDrawer = ({ title }) => {
     setVisible(true);
   };
 
-  const onSubmit = () => {};
+  const onFinish = (values) => {
+    console.log('==>',values)
+  };
 
   return (
     <>
@@ -46,7 +61,7 @@ const ProductFormInDrawer = ({ title }) => {
         open={visible}
         bodyStyle={{ paddingBottom: 80 }}
       >
-        <Form layout="vertical" form={form}>
+        <Form layout="vertical" form={form}   onFinish={onFinish}>
           <Row gutter={10}>
             <Col span={10}>
               <Form.Item
@@ -91,21 +106,6 @@ const ProductFormInDrawer = ({ title }) => {
             </Col>
             <Col span={10}>
               <Form.Item
-                name="developers"
-                label={labels.Developers}
-                rules={[
-                  {
-                    required: true,
-                  },
-                ]}
-              >
-                <Input placeholder={labels.Developers} />
-              </Form.Item>
-            </Col>
-          </Row>
-          <Row gutter={10}>
-            <Col span={10}>
-              <Form.Item
                 name="startDate"
                 label={labels.StartDate}
                 rules={[
@@ -114,12 +114,14 @@ const ProductFormInDrawer = ({ title }) => {
                   },
                 ]}
               >
-                <Input />
+                <DatePicker />
               </Form.Item>
             </Col>
+          </Row>
+          <Row gutter={10}>
             <Col span={10}>
               <Form.Item
-              initialValue={MethodologyMap[0].value}
+                initialValue={MethodologyMap[0].value}
                 name="methodology"
                 label={labels.Methodology}
                 rules={[
@@ -128,19 +130,61 @@ const ProductFormInDrawer = ({ title }) => {
                   },
                 ]}
               >
-                 <Select>
+                <Select>
                   {MethodologyMap.map((item, index) => {
-                    return <Option value={item.value} key={index}>{item.key}</Option>
+                    return (
+                      <Option value={item.value} key={index}>
+                        {item.key}
+                      </Option>
+                    );
                   })}
                 </Select>
               </Form.Item>
             </Col>
           </Row>
+
+           <Form.List name={"developers"} initialValue={[null]}>
+            {(fields, { add, remove }) => (
+              <>
+                {fields.map(({ key, name, ...restField }) => (
+                  <div style={{ display: "flex", width: "100%" }}>
+                    <Form.Item
+                    key={key}
+                      label={"name"}
+                      style={{ width: "35%" }}
+                      {...restField}
+                      rules={[
+                        {
+                          required: true,
+                        },
+                      ]}
+                    >
+                      <Input />
+                    </Form.Item>
+                    <Form.Item>
+                      <MinusCircleOutlined
+                        onClick={() => {
+                          remove(name);
+                        }}
+                      />
+                    </Form.Item>
+                  </div>
+                ))}
+                <Button
+                  onClick={() => {
+                    add();
+                  }}
+                >
+                  asd
+                </Button>
+              </>
+            )}
+          </Form.List> 
           <Form.Item className="drawer-form-buttons">
             <Button onClick={() => onClose()} style={{ marginRight: 8 }}>
               Cancel
             </Button>
-            <Button onClick={onSubmit} htmlType={"submit"} type="primary">
+            <Button htmlType="submit" type="primary">
               Save
             </Button>
           </Form.Item>
