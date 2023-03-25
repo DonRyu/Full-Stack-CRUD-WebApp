@@ -1,7 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Space, Table, Tag } from "antd";
+import { Button, Space, Table, Tag } from "antd";
 import TotalNumberOfProducts from "./TotalNumberOfProducts";
+import ProductFormInDrawer from "./ProductFormInDrawer";
+import { labels } from "../Labels";
 
 // "productNumber": "76237-279",
 // "productName": "Lotlux",
@@ -66,10 +68,23 @@ const ProductsTable = () => {
       key: "methodology",
       dataIndex: "methodology",
     },
+    {
+        title:'',
+        dataIndex:'action',
+        render:(_,elm)=>{
+            return(
+                <>
+                 <ProductFormInDrawer title={labels.Edit} />
+                 <Button>d</Button>
+                </>
+            )
+        }
+    }
   ];
 
   return (
-    <div style={{padding:'20px',position:'relative'}}>
+    <div style={{ width: "100%", position: "relative" }}>
+      <ProductFormInDrawer title={labels.Add} />
       <TotalNumberOfProducts />
       <Table columns={columns} dataSource={productList} />
     </div>
