@@ -1,15 +1,15 @@
-import axios from 'axios';
-
+import React, { useEffect, useState } from "react";
+import {useDispatch } from 'react-redux';
+import { product } from "./store/productSlice";
+import ProductsTable from "./components/ProductsTable";
 
 function App() {
-  return (
-   <button onClick={()=>{
-     axios({
-      url: `http://localhost:3000/api/products/get`,
-      method: 'GET'
-    });
-   }}>asd</button>
-  );
+  const dispatch = useDispatch();
+  useEffect(()=>{
+      dispatch((product({path:'get',data:{},method:'GET'})))
+  },[])
+
+  return <ProductsTable />;
 }
 
 export default App;
