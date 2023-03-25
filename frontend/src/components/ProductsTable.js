@@ -70,8 +70,10 @@ const ProductsTable = () => {
       render: (_, elm) => {
         return (
           <>
-            <ProductFormInDrawer title={labels.Edit} />
-
+            <ProductFormInDrawer
+              title={labels.Edit}
+              productNumber={elm.productNumber}
+            />
             <Popconfirm
               placement="leftTop"
               title={"Delete"}

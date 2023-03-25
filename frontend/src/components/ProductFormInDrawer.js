@@ -16,7 +16,7 @@ const { Option } = Select;
 // "startDate": "2022-09-25",
 // "methodology": "Agile"
 
-const ProductFormInDrawer = ({ title }) => {
+const ProductFormInDrawer = ({ title, productNumber }) => {
   const [form] = Form.useForm();
   const [visible, setVisible] = React.useState(false);
   const dispatch = useDispatch();
@@ -28,7 +28,19 @@ const ProductFormInDrawer = ({ title }) => {
 
   const onOpen = () => {
     setVisible(true);
-    form.resetFields();
+    if (productNumber) {
+      dispatch(
+        product({
+          data: productNumber,
+          method: "GET",
+          path: `get/${productNumber}`,
+        })
+      ).then((res) => {
+        form.setFieldsValue({ ...res.payload[0] });
+      });
+    } else {
+       form.resetFields();
+    }
   };
 
   const onFinish = (values) => {

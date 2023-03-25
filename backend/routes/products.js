@@ -46,8 +46,14 @@ router.post("/post", (req, res) => {
   res.status(200).send(jsonData);
 });
 
-router.put("/put", (req, res) => {
-  console.log("req", req.body);
+router.get("/get/:id", (req, res) => {
+  const productNumber = req.params.id
+  let jsonData = getData();
+  let selectedData = jsonData.filter((item)=>{
+    return item.productNumber === productNumber
+  })
+
+  res.status(200).send(selectedData);
 });
 
 router.delete("/delete", (req, res) => {
