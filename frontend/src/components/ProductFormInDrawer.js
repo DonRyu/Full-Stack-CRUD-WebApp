@@ -1,16 +1,139 @@
 import React from "react";
-import { Button, Drawer, Form } from "antd";
+import { Button, Drawer, Form, Row, Col, Input, Select } from "antd";
 import { labels } from "../Labels";
-import {PlusOutlined, SettingOutlined} from '@ant-design/icons';
+import { PlusOutlined, SettingOutlined } from "@ant-design/icons";
+const { Option } = Select;
+
+// "productNumber": "76237-279",
+// "productName": "Lotlux",
+// "scrumMaster": "Constantino",
+// "productOwner": "Irvine",
+// "developers": ["Willabella", "Glenine", "Haleigh"],
+// "startDate": "2022-09-25",
+// "methodology": "Agile"
 
 const ProductFormInDrawer = ({ title }) => {
+  const [form] = Form.useForm();
+  const [visible, setVisible] = React.useState(false);
+
+  const onClose = () => {
+    setVisible(false);
+    form.resetFields();
+  };
+
+  const onSubmit = () => {};
+
   return (
     <>
       {title === labels.Add ? (
-        <Button type="primary">Add</Button>
+        <Button type="primary">
+          <PlusOutlined />
+          Add
+        </Button>
       ) : (
-        <Button type="primary"><SettingOutlined/></Button>
+        <Button type="primary">
+          <SettingOutlined />
+        </Button>
       )}
+      <Drawer
+        title={title === labels.Add ? "Add Product" : "Edit Product"}
+        width={window.innerWidth > 900 ? 720 : window.innerWidth}
+        onClose={() => onClose()}
+        open={visible}
+        bodyStyle={{ paddingBottom: 80 }}
+      >
+        <Form layout="vertical"  form={form}>
+          <Row gutter={10}>
+            <Col span={10}>
+              <Form.Item
+                name="productname"
+                label={labels.ProductName}
+                rules={[
+                  {
+                    required: true
+                  },
+                ]}
+              >
+                <Input
+                  placeholder={labels.ProductName}
+                />
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item
+                name="productOwner"
+                label={labels.ProductOwner}
+                rules={[
+                  {
+                    required: true
+                  },
+                ]}
+              >
+               <Input
+                  placeholder={labels.ProductOwner}
+                />
+              </Form.Item>
+            </Col>
+          </Row>
+          <Row gutter={16}>
+            <Col span={12}>
+              <Form.Item
+                name="developers"
+                label={labels.Developers}
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+                <Input
+                  placeholder={labels.ProductName}
+                />
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item
+                name="startDate"
+                label={labels.D}
+                rules={[
+                  {
+                    required: true,
+                 
+                  },
+                ]}
+              >
+                <Input
+                
+                />
+              </Form.Item>
+            </Col>
+          </Row>
+          <Row gutter={16}>
+            <Col span={12}>
+              <Form.Item
+                name="methodology"
+                label={labels.Methodology}
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+                
+              </Form.Item>
+            </Col>
+           
+          </Row>
+          <Form.Item className="drawer-form-buttons">
+            <Button onClick={() => onClose()} style={{ marginRight: 8 }}>
+            Cancel
+            </Button>
+            <Button onClick={onSubmit} htmlType={"submit"} type="primary">
+              Save
+            </Button>
+          </Form.Item>
+        </Form>
+      </Drawer>
     </>
   );
 };
