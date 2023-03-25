@@ -7,7 +7,6 @@ import {
   Col,
   Input,
   Select,
-  DatePicker,
 } from "antd";
 import { labels, MethodologyMap } from "../Labels";
 import {
@@ -15,6 +14,7 @@ import {
   SettingOutlined,
   MinusCircleOutlined,
 } from "@ant-design/icons";
+import ProductDatePicker from "../components/ProductDatePicker"
 const { Option } = Select;
 
 // "productNumber": "76237-279",
@@ -114,7 +114,7 @@ const ProductFormInDrawer = ({ title }) => {
                   },
                 ]}
               >
-                <DatePicker />
+               <ProductDatePicker/>
               </Form.Item>
             </Col>
           </Row>
@@ -149,9 +149,9 @@ const ProductFormInDrawer = ({ title }) => {
                 {fields.map(({ key, name, ...restField }) => (
                   <div style={{ display: "flex", width: "100%" }}>
                     <Form.Item
-                    key={key}
-                      label={"name"}
-                      style={{ width: "35%" }}
+                      key={name}
+                      name={name}
+                      // style={{ width: "35%" }}
                       {...restField}
                       rules={[
                         {
@@ -175,7 +175,7 @@ const ProductFormInDrawer = ({ title }) => {
                     add();
                   }}
                 >
-                  asd
+                  ADD
                 </Button>
               </>
             )}
