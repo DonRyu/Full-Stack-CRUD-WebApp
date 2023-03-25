@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Drawer, Form, Row, Col, Input, Select } from "antd";
-import { labels } from "../Labels";
+import { labels , MethodologyMap} from "../Labels";
 import { PlusOutlined, SettingOutlined } from "@ant-design/icons";
 const { Option } = Select;
 
@@ -21,17 +21,21 @@ const ProductFormInDrawer = ({ title }) => {
     form.resetFields();
   };
 
+  const onOpen = () => {
+    setVisible(true);
+  };
+
   const onSubmit = () => {};
 
   return (
     <>
       {title === labels.Add ? (
-        <Button type="primary">
+        <Button type="primary" onClick={() => onOpen()}>
           <PlusOutlined />
           Add
         </Button>
       ) : (
-        <Button type="primary">
+        <Button type="primary" onClick={() => onOpen()}>
           <SettingOutlined />
         </Button>
       )}
@@ -42,7 +46,7 @@ const ProductFormInDrawer = ({ title }) => {
         open={visible}
         bodyStyle={{ paddingBottom: 80 }}
       >
-        <Form layout="vertical"  form={form}>
+        <Form layout="vertical" form={form}>
           <Row gutter={10}>
             <Col span={10}>
               <Form.Item
@@ -50,33 +54,42 @@ const ProductFormInDrawer = ({ title }) => {
                 label={labels.ProductName}
                 rules={[
                   {
-                    required: true
+                    required: true,
                   },
                 ]}
               >
-                <Input
-                  placeholder={labels.ProductName}
-                />
+                <Input placeholder={labels.ProductName} />
               </Form.Item>
             </Col>
-            <Col span={12}>
+            <Col span={10}>
               <Form.Item
                 name="productOwner"
                 label={labels.ProductOwner}
                 rules={[
                   {
-                    required: true
+                    required: true,
                   },
                 ]}
               >
-               <Input
-                  placeholder={labels.ProductOwner}
-                />
+                <Input placeholder={labels.ProductOwner} />
               </Form.Item>
             </Col>
           </Row>
-          <Row gutter={16}>
-            <Col span={12}>
+          <Row gutter={10}>
+            <Col span={10}>
+              <Form.Item
+                name="scrumMaster"
+                label={labels.ScrumMaster}
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+                <Input placeholder={labels.ScrumMaster} />
+              </Form.Item>
+            </Col>
+            <Col span={10}>
               <Form.Item
                 name="developers"
                 label={labels.Developers}
@@ -86,31 +99,27 @@ const ProductFormInDrawer = ({ title }) => {
                   },
                 ]}
               >
-                <Input
-                  placeholder={labels.ProductName}
-                />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item
-                name="startDate"
-                label={labels.D}
-                rules={[
-                  {
-                    required: true,
-                 
-                  },
-                ]}
-              >
-                <Input
-                
-                />
+                <Input placeholder={labels.Developers} />
               </Form.Item>
             </Col>
           </Row>
-          <Row gutter={16}>
-            <Col span={12}>
+          <Row gutter={10}>
+            <Col span={10}>
               <Form.Item
+                name="startDate"
+                label={labels.StartDate}
+                rules={[
+                  {
+                    required: true,
+                  },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+            </Col>
+            <Col span={10}>
+              <Form.Item
+              initialValue={MethodologyMap[0].value}
                 name="methodology"
                 label={labels.Methodology}
                 rules={[
@@ -119,14 +128,17 @@ const ProductFormInDrawer = ({ title }) => {
                   },
                 ]}
               >
-                
+                 <Select>
+                  {MethodologyMap.map((item, index) => {
+                    return <Option value={item.value} key={index}>{item.key}</Option>
+                  })}
+                </Select>
               </Form.Item>
             </Col>
-           
           </Row>
           <Form.Item className="drawer-form-buttons">
             <Button onClick={() => onClose()} style={{ marginRight: 8 }}>
-            Cancel
+              Cancel
             </Button>
             <Button onClick={onSubmit} htmlType={"submit"} type="primary">
               Save
