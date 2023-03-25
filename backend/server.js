@@ -9,7 +9,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 
-//asdasd
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}.`);
