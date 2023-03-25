@@ -9,9 +9,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 
-app.post('/api',(req,res)=>{
-  console.log('adasd')
-})
+// routers
+const products = require('./routes/products');
+
+
+app.post('/api',products)
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}.`);
