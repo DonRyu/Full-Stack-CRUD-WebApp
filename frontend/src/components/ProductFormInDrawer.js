@@ -30,8 +30,6 @@ const ProductFormInDrawer = ({ title, productNumber }) => {
       ).then((res) => {
         form.setFieldsValue({ ...res.payload[0] });
       });
-    } else {
-      form.resetFields();
     }
   };
 

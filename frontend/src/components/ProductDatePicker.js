@@ -3,11 +3,11 @@ import { DatePicker } from "antd";
 import moment from "moment";
 
 const ProductDatePicker = ({ onChange, value, isSetting }) => {
-  const [date, setDate] = useState("");
+  // const [date, setDate] = useState("");
 
-  useEffect(() => {
-    isSetting && setDate(value);
-  }, [date]);
+  // useEffect(() => {
+  //   isSetting && setDate(value);
+  // }, [date]);
 
   const getDate = (date) => {
     onChange?.(date);
@@ -18,7 +18,7 @@ const ProductDatePicker = ({ onChange, value, isSetting }) => {
         style={{ width: "100%" }}
         format={"YYYY-MM-DD"}
         onChange={(_, date) => getDate(date)}
-        value={isSetting ? moment(date, "YYYY-MM-DD") : undefined}
+        value={isSetting ? moment(value, "YYYY-MM-DD") : undefined}
         disabled={isSetting}
       />
     </span>

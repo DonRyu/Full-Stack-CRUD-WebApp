@@ -67,7 +67,7 @@ router.put("/put", (req, res) => {
   });
   const jsonString = JSON.stringify(newArr);
   fs.writeFileSync(filePath, jsonString);
-  res.status(200).send({msg:'Success'});
+  res.status(200).send({msg:'Successfully edit'});
 });
 
 router.delete("/delete", (req, res) => {

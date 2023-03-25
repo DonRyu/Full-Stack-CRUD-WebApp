@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Button, Table, Tag, Popconfirm } from "antd";
 import TotalNumberOfProducts from "./TotalNumberOfProducts";
@@ -8,17 +8,14 @@ import { DeleteOutlined } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
 import { product } from "../store/productSlice";
 
-// "productNumber": "76237-279",
-// "productName": "Lotlux",
-// "scrumMaster": "Constantino",
-// "productOwner": "Irvine",
-// "developers": ["Willabella", "Glenine", "Haleigh"],
-// "startDate": "2022-09-25",
-// "methodology": "Agile"
 
 const ProductsTable = () => {
   const productList = useSelector((state) => state.products.productList);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(product({ path: "get", data: {}, method: "GET" }));
+  }, []);
 
   const deleteProduct = (productNumber) => {
     dispatch(
@@ -49,7 +46,7 @@ const ProductsTable = () => {
       dataIndex: "developers",
       render: (developers) => (
         <>
-          {developers?.map((tag,key) => {
+          {developers?.map((tag, key) => {
             return <Tag key={key}>{tag.toUpperCase()}</Tag>;
           })}
         </>
