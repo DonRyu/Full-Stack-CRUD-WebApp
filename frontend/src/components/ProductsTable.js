@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { Button, Table, Tag, Popconfirm } from "antd";
 import TotalNumberOfProducts from "./TotalNumberOfProducts";
 import ProductFormInDrawer from "./ProductFormInDrawer";
+import OnSearch from "./OnSearch"
 import { labels } from "../Labels";
 import { DeleteOutlined } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
@@ -89,7 +90,9 @@ const ProductsTable = () => {
 
   return (
     <div style={{ width: "100%", position: "relative" }}>
+      
       <ProductFormInDrawer title={labels.Add} />
+      <OnSearch/>
       <TotalNumberOfProducts />
       <Table
         columns={columns}

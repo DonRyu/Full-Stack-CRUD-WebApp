@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Drawer, Form, Row, Col, Input, Select } from "antd";
 import { labels, MethodologyMap } from "../Labels";
 import { PlusOutlined, SettingOutlined } from "@ant-design/icons";
-import ProductDatePicker from "../components/ProductDatePicker";
+import ProductDatePicker from "./DatePicker";
 import DeveloperTable from "./DeveloperTable";
 import { useDispatch } from "react-redux";
 import { product } from "../store/productSlice";

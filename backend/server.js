@@ -11,9 +11,11 @@ app.use(cors());
 
 // routers
 const products = require('./routes/products');
+const search = require('./routes/search');
 
 
 app.use('/api/products',products)
+app.use('/api/search',search)
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}.`);

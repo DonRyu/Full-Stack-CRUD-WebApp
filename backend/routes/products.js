@@ -58,7 +58,7 @@ router.get("/get/:id", (req, res) => {
 router.put("/put", (req, res) => {
   let jsonData = getData();
   let newArr = jsonData.map((item) => {
-    if (item.productNumber === req.body.productNumber) {
+    if (item.productNumber === req.body?.productNumber) {
       return {
         ...item,
         ...req.body,

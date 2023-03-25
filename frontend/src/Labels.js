@@ -21,3 +21,13 @@ export const MethodologyMap = [
   },
 ];
 
+export const SearchOptionMap = [
+  {
+    key: "Scrum Master",
+    value: "scrumMaster",
+  },
+  {
+    key: "Developer",
+    value: "developers",
+  },
+]
