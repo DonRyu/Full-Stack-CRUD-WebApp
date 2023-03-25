@@ -57,7 +57,9 @@ const DeveloperTable = () => {
                 width: "96.5%",
               }}
               onClick={() => {
-                add();
+                if (fields.length < 5) {
+                  add();
+                }
               }}
             >
               Add

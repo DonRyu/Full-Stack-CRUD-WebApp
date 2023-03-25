@@ -1,13 +1,11 @@
 import React from "react";
 import { Button, Drawer, Form, Row, Col, Input, Select } from "antd";
 import { labels, MethodologyMap } from "../Labels";
-import {
-  PlusOutlined,
-  SettingOutlined,
-  MinusCircleOutlined,
-} from "@ant-design/icons";
+import { PlusOutlined, SettingOutlined } from "@ant-design/icons";
 import ProductDatePicker from "../components/ProductDatePicker";
 import DeveloperTable from "./DeveloperTable";
+import { useDispatch } from "react-redux";
+import { product } from "../store/productSlice";
 const { Option } = Select;
 
 // "productNumber": "76237-279",
@@ -21,6 +19,7 @@ const { Option } = Select;
 const ProductFormInDrawer = ({ title }) => {
   const [form] = Form.useForm();
   const [visible, setVisible] = React.useState(false);
+  const dispatch = useDispatch();
 
   const onClose = () => {
     setVisible(false);
@@ -32,7 +31,9 @@ const ProductFormInDrawer = ({ title }) => {
   };
 
   const onFinish = (values) => {
-    console.log("==>", values);
+    if (title === labels.Add) {
+      dispatch(product({ data: values, method: "POST", path: "post" }));
+    }
   };
 
   return (
@@ -63,7 +64,7 @@ const ProductFormInDrawer = ({ title }) => {
           <Row gutter={10}>
             <Col span={12}>
               <Form.Item
-                name="productname"
+                name="productName"
                 label={labels.ProductName}
                 rules={[
                   {

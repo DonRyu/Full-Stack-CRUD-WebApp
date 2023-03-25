@@ -1,9 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Button, Space, Table, Tag } from "antd";
+import { Button, Table, Tag } from "antd";
 import TotalNumberOfProducts from "./TotalNumberOfProducts";
 import ProductFormInDrawer from "./ProductFormInDrawer";
 import { labels } from "../Labels";
+import { DeleteOutlined } from "@ant-design/icons";
 
 // "productNumber": "76237-279",
 // "productName": "Lotlux",
@@ -68,7 +69,7 @@ const ProductsTable = () => {
           <>
             <ProductFormInDrawer title={labels.Edit} />
             <Button type="primary" danger>
-              {labels.Delete}
+              <DeleteOutlined/>
             </Button>
           </>
         );
