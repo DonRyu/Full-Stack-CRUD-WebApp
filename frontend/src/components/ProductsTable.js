@@ -45,15 +45,7 @@ const ProductsTable = () => {
       render: (developers) => (
         <>
           {developers.map((tag) => {
-            let color = tag.length > 5 ? "geekblue" : "green";
-            if (tag === "loser") {
-              color = "volcano";
-            }
-            return (
-              <Tag color={color} key={tag}>
-                {tag.toUpperCase()}
-              </Tag>
-            );
+            return <Tag key={tag}>{tag.toUpperCase()}</Tag>;
           })}
         </>
       ),
@@ -69,17 +61,19 @@ const ProductsTable = () => {
       dataIndex: "methodology",
     },
     {
-        title:'',
-        dataIndex:'action',
-        render:(_,elm)=>{
-            return(
-                <>
-                 <ProductFormInDrawer title={labels.Edit} />
-                 <Button type="primary" danger>{labels.Delete}</Button>
-                </>
-            )
-        }
-    }
+      title: "",
+      dataIndex: "action",
+      render: (_, elm) => {
+        return (
+          <>
+            <ProductFormInDrawer title={labels.Edit} />
+            <Button type="primary" danger>
+              {labels.Delete}
+            </Button>
+          </>
+        );
+      },
+    },
   ];
 
   return (

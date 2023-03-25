@@ -1,20 +1,13 @@
 import React from "react";
-import {
-  Button,
-  Drawer,
-  Form,
-  Row,
-  Col,
-  Input,
-  Select,
-} from "antd";
+import { Button, Drawer, Form, Row, Col, Input, Select } from "antd";
 import { labels, MethodologyMap } from "../Labels";
 import {
   PlusOutlined,
   SettingOutlined,
   MinusCircleOutlined,
 } from "@ant-design/icons";
-import ProductDatePicker from "../components/ProductDatePicker"
+import ProductDatePicker from "../components/ProductDatePicker";
+import DeveloperTable from "./DeveloperTable";
 const { Option } = Select;
 
 // "productNumber": "76237-279",
@@ -39,7 +32,7 @@ const ProductFormInDrawer = ({ title }) => {
   };
 
   const onFinish = (values) => {
-    console.log('==>',values)
+    console.log("==>", values);
   };
 
   return (
@@ -56,14 +49,19 @@ const ProductFormInDrawer = ({ title }) => {
       )}
       <Drawer
         title={title === labels.Add ? "Add Product" : "Edit Product"}
-        width={window.innerWidth > 900 ? 720 : window.innerWidth}
+        width={window.innerWidth > 900 ? 620 : window.innerWidth}
         onClose={() => onClose()}
         open={visible}
         bodyStyle={{ paddingBottom: 80 }}
       >
-        <Form layout="vertical" form={form}   onFinish={onFinish}>
+        <Form
+          layout="vertical"
+          form={form}
+          onFinish={onFinish}
+          requiredMark={false}
+        >
           <Row gutter={10}>
-            <Col span={10}>
+            <Col span={12}>
               <Form.Item
                 name="productname"
                 label={labels.ProductName}
@@ -76,7 +74,7 @@ const ProductFormInDrawer = ({ title }) => {
                 <Input placeholder={labels.ProductName} />
               </Form.Item>
             </Col>
-            <Col span={10}>
+            <Col span={12}>
               <Form.Item
                 name="productOwner"
                 label={labels.ProductOwner}
@@ -91,7 +89,7 @@ const ProductFormInDrawer = ({ title }) => {
             </Col>
           </Row>
           <Row gutter={10}>
-            <Col span={10}>
+            <Col span={12}>
               <Form.Item
                 name="scrumMaster"
                 label={labels.ScrumMaster}
@@ -104,7 +102,7 @@ const ProductFormInDrawer = ({ title }) => {
                 <Input placeholder={labels.ScrumMaster} />
               </Form.Item>
             </Col>
-            <Col span={10}>
+            <Col span={12}>
               <Form.Item
                 name="startDate"
                 label={labels.StartDate}
@@ -114,12 +112,15 @@ const ProductFormInDrawer = ({ title }) => {
                   },
                 ]}
               >
-               <ProductDatePicker/>
+                <ProductDatePicker />
               </Form.Item>
             </Col>
           </Row>
           <Row gutter={10}>
-            <Col span={10}>
+            <Col span={12}>
+              <DeveloperTable />
+            </Col>
+            <Col span={12}>
               <Form.Item
                 initialValue={MethodologyMap[0].value}
                 name="methodology"
@@ -142,52 +143,22 @@ const ProductFormInDrawer = ({ title }) => {
               </Form.Item>
             </Col>
           </Row>
-
-           <Form.List name={"developers"} initialValue={[null]}>
-            {(fields, { add, remove }) => (
-              <>
-                {fields.map(({ key, name, ...restField }) => (
-                  <div style={{ display: "flex", width: "100%" }}>
-                    <Form.Item
-                      key={name}
-                      name={name}
-                      // style={{ width: "35%" }}
-                      {...restField}
-                      rules={[
-                        {
-                          required: true,
-                        },
-                      ]}
-                    >
-                      <Input />
-                    </Form.Item>
-                    <Form.Item>
-                      <MinusCircleOutlined
-                        onClick={() => {
-                          remove(name);
-                        }}
-                      />
-                    </Form.Item>
-                  </div>
-                ))}
-                <Button
-                  onClick={() => {
-                    add();
-                  }}
-                >
-                  ADD
-                </Button>
-              </>
-            )}
-          </Form.List> 
-          <Form.Item className="drawer-form-buttons">
-            <Button onClick={() => onClose()} style={{ marginRight: 8 }}>
-              Cancel
-            </Button>
-            <Button htmlType="submit" type="primary">
-              Save
-            </Button>
-          </Form.Item>
+          <Row
+            style={{
+              marginTop: 100,
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <Form.Item className="drawer-form-buttons">
+              <Button onClick={() => onClose()} style={{ marginRight: 8 }}>
+                Cancel
+              </Button>
+              <Button htmlType="submit" type="primary">
+                Save
+              </Button>
+            </Form.Item>
+          </Row>
         </Form>
       </Drawer>
     </>

@@ -9,6 +9,7 @@ const ProductDatePicker = ({ onChange, value }) => {
   return (
     <span>
       <DatePicker
+        style={{width:'100%'}}
         format={"YYYY-MM-DD"}
         onChange={(_, date) => getDate(date)}
         defaultValue={value ? moment(value, "YYYY-MM-DD") : undefined}
