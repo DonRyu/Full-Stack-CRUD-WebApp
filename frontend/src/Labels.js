@@ -1,4 +1,5 @@
 export const labels = {
     Add:"Add",
-    Edit:"Edit"
+    Edit:"Edit",
+    Delete:"Delete"
 }

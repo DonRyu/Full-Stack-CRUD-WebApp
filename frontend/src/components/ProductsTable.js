@@ -75,7 +75,7 @@ const ProductsTable = () => {
             return(
                 <>
                  <ProductFormInDrawer title={labels.Edit} />
-                 <Button>d</Button>
+                 <Button type="primary" danger>{labels.Delete}</Button>
                 </>
             )
         }
