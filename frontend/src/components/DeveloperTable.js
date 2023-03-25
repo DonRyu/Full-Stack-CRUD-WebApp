@@ -10,7 +10,7 @@ const DeveloperTable = () => {
         {(fields, { add, remove }) => (
           <div
             style={{
-              borderRadius: 6,
+              borderRadius: 2,
               border: "1px solid #d9d9d9",
               height: 164,
               overflow: "auto",

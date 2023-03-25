@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Button, Table, Tag, Tooltip, Popconfirm } from "antd";
+import { Button, Table, Tag, Popconfirm } from "antd";
 import TotalNumberOfProducts from "./TotalNumberOfProducts";
 import ProductFormInDrawer from "./ProductFormInDrawer";
 import { labels } from "../Labels";

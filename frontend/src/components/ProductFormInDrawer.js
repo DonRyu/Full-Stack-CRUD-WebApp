@@ -39,7 +39,7 @@ const ProductFormInDrawer = ({ title, productNumber }) => {
         form.setFieldsValue({ ...res.payload[0] });
       });
     } else {
-       form.resetFields();
+      form.resetFields();
     }
   };
 
@@ -128,7 +128,9 @@ const ProductFormInDrawer = ({ title, productNumber }) => {
                   },
                 ]}
               >
-                <ProductDatePicker />
+                <ProductDatePicker
+                  isSetting={title === labels.Add ? false : true}
+                />
               </Form.Item>
             </Col>
           </Row>
