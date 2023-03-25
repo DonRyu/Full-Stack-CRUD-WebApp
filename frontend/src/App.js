@@ -1,8 +1,14 @@
+import axios from 'axios';
 
 
 function App() {
   return (
-   <div>test</div>
+   <button onClick={()=>{
+     axios({
+      url: `http://localhost:3000/api`,
+      method: 'POST'
+    });
+   }}>asd</button>
   );
 }
 
