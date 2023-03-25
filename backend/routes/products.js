@@ -51,7 +51,14 @@ router.put("/put", (req, res) => {
 });
 
 router.delete("/delete", (req, res) => {
-  console.log("req", req.body);
+  let jsonData = getData();
+  let newArr = jsonData.filter((item) => {
+    return item.productNumber !== req.body.productNumber;
+  });
+  const jsonString = JSON.stringify(newArr);
+  fs.writeFile(filePath, jsonString, (err, jsonData) => {
+    res.status(200).send(jsonData);
+  });
 });
 
 module.exports = router;

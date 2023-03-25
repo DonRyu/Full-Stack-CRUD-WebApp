@@ -28,12 +28,15 @@ const ProductFormInDrawer = ({ title }) => {
 
   const onOpen = () => {
     setVisible(true);
+    form.resetFields();
   };
 
   const onFinish = (values) => {
     if (title === labels.Add) {
       dispatch(product({ data: values, method: "POST", path: "post" }));
     }
+    setVisible(false);
+    form.resetFields();
   };
 
   return (
