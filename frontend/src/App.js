@@ -5,8 +5,8 @@ function App() {
   return (
    <button onClick={()=>{
      axios({
-      url: `http://localhost:3000/api`,
-      method: 'POST'
+      url: `http://localhost:3000/api/products/get`,
+      method: 'GET'
     });
    }}>asd</button>
   );

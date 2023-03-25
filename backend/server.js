@@ -13,7 +13,7 @@ app.use(cors());
 const products = require('./routes/products');
 
 
-app.post('/api',products)
+app.use('/api/products',products)
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}.`);
