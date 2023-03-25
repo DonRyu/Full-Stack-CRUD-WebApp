@@ -9,8 +9,7 @@ const product = createAsyncThunk("auth/login", async (info) => {
   });
 
   if (res.data.msg) {
-    return;
-  } 
+  }
   return res.data;
 });
 
@@ -28,5 +27,4 @@ const productSlice = createSlice({
 });
 
 export default productSlice.reducer;
-// export const { logout,login } = productSlice.actions;
 export { product };

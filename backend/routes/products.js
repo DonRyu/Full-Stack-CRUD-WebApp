@@ -47,13 +47,28 @@ router.post("/post", (req, res) => {
 });
 
 router.get("/get/:id", (req, res) => {
-  const productNumber = req.params.id
+  const productNumber = req.params.id;
   let jsonData = getData();
-  let selectedData = jsonData.filter((item)=>{
-    return item.productNumber === productNumber
-  })
-
+  let selectedData = jsonData.filter((item) => {
+    return item.productNumber === productNumber;
+  });
   res.status(200).send(selectedData);
+});
+
+router.put("/put", (req, res) => {
+  let jsonData = getData();
+  let newArr = jsonData.map((item) => {
+    if (item.productNumber === req.body.productNumber) {
+      return {
+        ...item,
+        ...req.body,
+      };
+    }
+  });
+  const jsonString = JSON.stringify(newArr);
+  fs.writeFile(filePath, jsonString, (err, jsonData) => {
+    res.status(200).send(jsonData);
+  });
 });
 
 router.delete("/delete", (req, res) => {

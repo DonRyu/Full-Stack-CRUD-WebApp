@@ -8,14 +8,6 @@ import { useDispatch } from "react-redux";
 import { product } from "../store/productSlice";
 const { Option } = Select;
 
-// "productNumber": "76237-279",
-// "productName": "Lotlux",
-// "scrumMaster": "Constantino",
-// "productOwner": "Irvine",
-// "developers": ["Willabella", "Glenine", "Haleigh"],
-// "startDate": "2022-09-25",
-// "methodology": "Agile"
-
 const ProductFormInDrawer = ({ title, productNumber }) => {
   const [form] = Form.useForm();
   const [visible, setVisible] = React.useState(false);
@@ -46,6 +38,16 @@ const ProductFormInDrawer = ({ title, productNumber }) => {
   const onFinish = (values) => {
     if (title === labels.Add) {
       dispatch(product({ data: values, method: "POST", path: "post" }));
+    } else {
+      dispatch(
+        product({
+          data: { ...values, productNumber },
+          method: "PUT",
+          path: "put",
+        })
+      ).then((res)=>{
+        console.log('res',res.payload)
+      })
     }
     setVisible(false);
     form.resetFields();

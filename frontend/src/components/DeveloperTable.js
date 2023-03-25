@@ -26,6 +26,7 @@ const DeveloperTable = () => {
                   marginTop: 10,
                   height: 33,
                 }}
+                key={key}
               >
                 <Form.Item
                   style={{ height: 33, width: "80%" }}

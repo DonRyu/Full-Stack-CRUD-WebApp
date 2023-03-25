@@ -50,7 +50,7 @@ const ProductsTable = () => {
       dataIndex: "developers",
       render: (developers) => (
         <>
-          {developers.map((tag) => {
+          {developers?.map((tag) => {
             return <Tag key={tag}>{tag.toUpperCase()}</Tag>;
           })}
         </>
