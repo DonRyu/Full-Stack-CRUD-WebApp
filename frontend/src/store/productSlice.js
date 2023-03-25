@@ -21,7 +21,9 @@ const productSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(product.fulfilled, (state, action) => {
+     if(!action.payload.msg){
       state.productList = action.payload;
+     }
     });
   },
 });

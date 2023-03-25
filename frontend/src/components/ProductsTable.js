@@ -30,7 +30,6 @@ const ProductsTable = () => {
     {
       title: "Product#",
       dataIndex: "productNumber",
-      key: "productNumber",
       render: (text) => <a>{text}</a>,
     },
     {
@@ -50,8 +49,8 @@ const ProductsTable = () => {
       dataIndex: "developers",
       render: (developers) => (
         <>
-          {developers?.map((tag) => {
-            return <Tag key={tag}>{tag.toUpperCase()}</Tag>;
+          {developers?.map((tag,key) => {
+            return <Tag key={key}>{tag.toUpperCase()}</Tag>;
           })}
         </>
       ),
