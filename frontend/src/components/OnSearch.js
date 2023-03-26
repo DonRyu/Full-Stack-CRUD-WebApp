@@ -28,7 +28,7 @@ const OnSearch = () => {
   };
 
   return (
-    <div style={{ display: "flex", width: 400 }}>
+    <div style={{ display: "flex", width: 500, justifyContent:'space-evenly', alignItems:'center'}}>
       <Select
         onChange={(value) => setSelectedOption(value)}
         defaultValue={SearchOptionMap[0].value}

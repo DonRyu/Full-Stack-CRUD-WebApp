@@ -91,7 +91,13 @@ const ProductsTable = () => {
   ];
 
   return (
-    <>
+    <div
+      style={{
+        paddingRight: 30,
+        paddingLeft: 30,
+        paddingTop: 30,
+      }}
+    >
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <OnSearch />
         <ProductFormInDrawer title={labels.Add} />
@@ -101,7 +107,7 @@ const ProductsTable = () => {
         dataSource={List}
         rowKey={(item) => item.productNumber}
       />
-    </>
+    </div>
   );
 };
 
