@@ -1,8 +1,18 @@
 import React from "react";
-import { Button, Drawer, Form, Row, Col, Input, Select } from "antd";
+import { Button, Form, Input, notification } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
 
 const DeveloperTable = () => {
+  const addDevloper = (fields, add) => {
+    if (fields.length < 5) {
+      add();
+    } else {
+      notification["error"]({
+        message: `You can add max 5 developers`,
+      });
+    }
+  };
+
   return (
     <>
       <div style={{ paddingBlock: 4 }}>Developers</div>
@@ -57,11 +67,7 @@ const DeveloperTable = () => {
                 bottom: -32,
                 width: "96.5%",
               }}
-              onClick={() => {
-                if (fields.length < 5) {
-                  add();
-                }
-              }}
+              onClick={() => addDevloper(fields, add)}
             >
               Add
             </Button>

@@ -3,7 +3,7 @@ import { Input, Select } from "antd";
 import { SearchOptionMap } from "../Labels";
 import { useDispatch } from "react-redux";
 import { productSearch } from "../store/productSlice";
-import TotalNumberOfProducts from "../components/TotalNumberOfProducts";
+import ProductsTotalNumber from "./ProductsTotalNumber";
 const { Search } = Input;
 
 const OnSearch = () => {
@@ -41,7 +41,7 @@ const OnSearch = () => {
         enterButton="Search"
         onSearch={onPress}
       />
-      <TotalNumberOfProducts />
+      <ProductsTotalNumber />
     </div>
   );
 };
