@@ -35,7 +35,11 @@ const ProductFormInDrawer = ({ title, productNumber }) => {
 
   const onFinish = (values) => {
     if (title === labels.Add) {
-      dispatch(productCRUD({ data: values, method: "POST", path: "post" }));
+      dispatch(
+        productCRUD({ data: values, method: "POST", path: "post" })
+      ).then((res) => {
+        if (res.payload.msg) return dispatch(productList());
+      });
     } else {
       dispatch(
         productCRUD({
