@@ -16,7 +16,7 @@ const OnSearch = () => {
     setLoading(true);
     dispatch(
       productSearch({
-        path: `get?selectedOption=${selectedOption}&value=${value.trim()}`,
+        path: `get?selectedOption=${selectedOption}&value=${value.trim().replace(/(\s*)/g, "").toLowerCase()}`,
         method: "GET"
       })
     );

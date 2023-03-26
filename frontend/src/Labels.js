@@ -28,6 +28,6 @@ export const SearchOptionMap = [
   },
   {
     label: "Developer",
-    value: "developers",
+    value: "developer",
   },
 ]
