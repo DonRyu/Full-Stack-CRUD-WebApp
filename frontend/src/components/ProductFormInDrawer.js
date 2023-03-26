@@ -1,5 +1,14 @@
 import React from "react";
-import { Button, Drawer, Form, Row, Col, Input, Select } from "antd";
+import {
+  Button,
+  Drawer,
+  Form,
+  Row,
+  Col,
+  Input,
+  Select,
+  notification,
+} from "antd";
 import { labels, MethodologyMap } from "../Labels";
 import { PlusOutlined, SettingOutlined } from "@ant-design/icons";
 import ProductDatePicker from "./DatePicker";
@@ -34,23 +43,31 @@ const ProductFormInDrawer = ({ title, productNumber }) => {
   };
 
   const onFinish = (values) => {
+    if (values.developers.length < 1) {
+      notification["error"]({
+        message: `Input at least one developer`,
+      });
+      return;
+    }
+
     if (title === labels.Add) {
       dispatch(
         productCRUD({ data: values, method: "POST", path: "post" })
       ).then((res) => {
-        if (res.payload.msg) return dispatch(productList());
+        res.payload.msg && dispatch(productList());
       });
-    } else {
-      dispatch(
-        productCRUD({
-          data: { ...values, productNumber },
-          method: "PUT",
-          path: "put",
-        })
-      ).then((res) => {
-        if (res.payload.msg) return dispatch(productList());
-      });
+      return;
     }
+
+    dispatch(
+      productCRUD({
+        data: { ...values, productNumber },
+        method: "PUT",
+        path: "put",
+      })
+    ).then((res) => {
+      res.payload.msg && dispatch(productList());
+    });
     setVisible(false);
     form.resetFields();
   };
@@ -63,7 +80,16 @@ const ProductFormInDrawer = ({ title, productNumber }) => {
           Add
         </Button>
       ) : (
-        <Button type="primary" onClick={() => onOpen()} style={{width:32,display:'flex',justifyContent:'center',alignItems:'center'}}>
+        <Button
+          type="primary"
+          onClick={() => onOpen()}
+          style={{
+            width: 32,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <SettingOutlined />
         </Button>
       )}

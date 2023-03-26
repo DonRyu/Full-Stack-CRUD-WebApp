@@ -98,7 +98,13 @@ const ProductsTable = () => {
         paddingTop: 30,
       }}
     >
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          marginBottom: 5,
+        }}
+      >
         <OnSearch />
         <ProductFormInDrawer title={labels.Add} />
       </div>
