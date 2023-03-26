@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { DatePicker } from "antd";
-import moment from "moment";
+import dayjs from 'dayjs';
 
 const ProductDatePicker = ({ onChange, value, isSetting }) => {
 
@@ -13,7 +13,7 @@ const ProductDatePicker = ({ onChange, value, isSetting }) => {
         style={{ width: "100%" }}
         format={"YYYY-MM-DD"}
         onChange={(_, date) => getDate(date)}
-        value={isSetting ? moment(value, "YYYY-MM-DD") : undefined}
+        value={isSetting ? dayjs(value, "YYYY-MM-DD") : undefined}
         disabled={isSetting}
       />
     </span>

@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
-
+import React from "react";
 import ProductsTable from "./components/ProductsTable";
-import 'antd/dist/antd.css';
 
 function App() {
   return (
