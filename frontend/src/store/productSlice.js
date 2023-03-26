@@ -19,6 +19,15 @@ const productCRUD = createAsyncThunk("product/CRUD", async (info) => {
   return res.data;
 });
 
+const productSearch = createAsyncThunk("product/search", async (info) => {
+  const res = await axios({
+    url: `http://localhost:3000/api/search/${info.path}`,
+    data: info.data,
+    method: info.method,
+  });
+  return res.data;
+});
+
 const productSlice = createSlice({
   name: "product",
   initialState: {
@@ -36,8 +45,11 @@ const productSlice = createSlice({
         });
       }
     });
+    builder.addCase(productSearch.fulfilled, (state, action) => {
+      state.productList = action.payload;
+    });
   },
 });
 
 export default productSlice.reducer;
-export { productList, productCRUD };
+export { productList, productCRUD, productSearch };

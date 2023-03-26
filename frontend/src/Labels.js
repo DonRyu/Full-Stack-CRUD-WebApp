@@ -12,22 +12,22 @@ export const labels = {
 
 export const MethodologyMap = [
   {
-    key: "Agile",
+    label: "Agile",
     value: "agile",
   },
   {
-    key: "Waterfall",
+    label: "Waterfall",
     value: "waterfall",
   },
 ];
 
 export const SearchOptionMap = [
   {
-    key: "Scrum Master",
+    label: "Scrum Master",
     value: "scrumMaster",
   },
   {
-    key: "Developer",
+    label: "Developer",
     value: "developers",
   },
 ]

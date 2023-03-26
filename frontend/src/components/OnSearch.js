@@ -1,20 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import { Input, Select } from "antd";
-import {SearchOptionMap} from "../Labels"
+import { SearchOptionMap } from "../Labels";
+import { useDispatch } from "react-redux";
+import { productSearch } from "../store/productSlice";
 const { Search } = Input;
 
-
 const OnSearch = () => {
-  const onPress = (value) => {};
+  const dispatch = useDispatch();
+  const [selectedOption, setSelectedOption] = useState(
+    SearchOptionMap[0].value
+  );
+  const [loading, setLoading] = useState(false);
+
+  const onPress = (value) => {
+    setLoading(true);
+    dispatch(
+      productSearch({
+        path: `get?selectedOption=${selectedOption}&value=${value.trim()}`,
+        method: "GET"
+      })
+    );
+    setLoading(false);
+  };
 
   return (
-    <div style={{display:'flex',width:400}}>
+    <div style={{ display: "flex", width: 400 }}>
       <Select
-        defaultValue={SearchOptionMap[0].key}
-        style={{ width: 180,height:'100%' }}
+        onChange={(value) => setSelectedOption(value)}
+        defaultValue={SearchOptionMap[0].value}
+        style={{ width: 180, height: "100%" }}
         options={SearchOptionMap}
       />
       <Search
+        disabled={loading}
         placeholder="input search text"
         enterButton="Search"
         onSearch={onPress}
