@@ -3,6 +3,7 @@ import { Input, Select } from "antd";
 import { SearchOptionMap } from "../Labels";
 import { useDispatch } from "react-redux";
 import { productSearch } from "../store/productSlice";
+import TotalNumberOfProducts from "../components/TotalNumberOfProducts";
 const { Search } = Input;
 
 const OnSearch = () => {
@@ -16,8 +17,11 @@ const OnSearch = () => {
     setLoading(true);
     dispatch(
       productSearch({
-        path: `get?selectedOption=${selectedOption}&value=${value.trim().replace(/(\s*)/g, "").toLowerCase()}`,
-        method: "GET"
+        path: `get?selectedOption=${selectedOption}&value=${value
+          .trim()
+          .replace(/(\s*)/g, "")
+          .toLowerCase()}`,
+        method: "GET",
       })
     );
     setLoading(false);
@@ -37,6 +41,7 @@ const OnSearch = () => {
         enterButton="Search"
         onSearch={onPress}
       />
+      <TotalNumberOfProducts />
     </div>
   );
 };

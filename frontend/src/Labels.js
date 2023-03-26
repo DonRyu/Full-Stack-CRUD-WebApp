@@ -13,11 +13,11 @@ export const labels = {
 export const MethodologyMap = [
   {
     label: "Agile",
-    value: "agile",
+    value: "Agile",
   },
   {
     label: "Waterfall",
-    value: "waterfall",
+    value: "Waterfall",
   },
 ];
 

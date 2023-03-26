@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Button, Table, Tag, Popconfirm } from "antd";
-import TotalNumberOfProducts from "./TotalNumberOfProducts";
 import ProductFormInDrawer from "./ProductFormInDrawer";
 import OnSearch from "./OnSearch";
 import { labels } from "../Labels";
@@ -57,6 +56,7 @@ const ProductsTable = () => {
     {
       title: "Date",
       dataIndex: "startDate",
+      width: 120,
     },
     {
       title: "Methodology",
@@ -65,9 +65,10 @@ const ProductsTable = () => {
     {
       title: "",
       dataIndex: "action",
+      width: 100,
       render: (_, elm) => {
         return (
-          <>
+          <div style={{ display: "flex", justifyContent: "space-evenly" }}>
             <ProductFormInDrawer
               title={labels.Edit}
               productNumber={elm.productNumber}
@@ -83,23 +84,24 @@ const ProductsTable = () => {
             >
               <Button type={"primary"} danger icon={<DeleteOutlined />} />
             </Popconfirm>
-          </>
+          </div>
         );
       },
     },
   ];
 
   return (
-    <div style={{ width: "100%", position: "relative" }}>
-      <ProductFormInDrawer title={labels.Add} />
-      <OnSearch />
-      <TotalNumberOfProducts />
+    <>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <OnSearch />
+        <ProductFormInDrawer title={labels.Add} />
+      </div>
       <Table
         columns={columns}
         dataSource={List}
         rowKey={(item) => item.productNumber}
       />
-    </div>
+    </>
   );
 };
 

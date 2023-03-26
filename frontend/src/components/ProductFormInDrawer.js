@@ -63,7 +63,7 @@ const ProductFormInDrawer = ({ title, productNumber }) => {
           Add
         </Button>
       ) : (
-        <Button type="primary" onClick={() => onOpen()}>
+        <Button type="primary" onClick={() => onOpen()} style={{width:32,display:'flex',justifyContent:'center',alignItems:'center'}}>
           <SettingOutlined />
         </Button>
       )}
