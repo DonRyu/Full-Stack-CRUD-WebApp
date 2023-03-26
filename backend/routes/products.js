@@ -25,14 +25,26 @@ const getUniqueNumberID = () => {
   return randomNum;
 };
 
-router.get("/get", (req, res) => {
+/**
+ * this is express handler for get
+ */
+function getHandler(req, res) {
+  const {context, queryParam} = req;
+  const {pageCount, pageNo, filter} = queryParam;
+  const {database} = context;
+
+  const data = database.get(pageNo, pageCount);
+  const {count, totalCount} = database.count(filter);
+
   let jsonData = getData();
   if (jsonData) {
     res.status(200).send(jsonData);
   } else {
     res.status(500);
   }
-});
+}
+
+router.get("/get", getHandler);
 
 router.post("/post", (req, res) => {
   let jsonData = getData();

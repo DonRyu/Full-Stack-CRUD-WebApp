@@ -35,7 +35,7 @@ const ProductsTable = () => {
       dataIndex: "productName",
     },
     {
-      title: "ScrumMaster",
+      title: "Scrum Master",
       dataIndex: "scrumMaster",
     },
     {
@@ -54,7 +54,7 @@ const ProductsTable = () => {
       ),
     },
     {
-      title: "Date",
+      title: "Start Date",
       dataIndex: "startDate",
       width: 120,
     },
