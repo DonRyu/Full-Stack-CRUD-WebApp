@@ -1,32 +1,43 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { notification } from "antd";
 
-const product = createAsyncThunk("auth/login", async (info) => {
+const productList = createAsyncThunk("product/list", async () => {
+  const res = await axios({
+    url: `http://localhost:3000/api/products/get`,
+    method: "GET",
+  });
+  return res.data;
+});
+
+const productCRUD = createAsyncThunk("product/CRUD", async (info) => {
   const res = await axios({
     url: `http://localhost:3000/api/products/${info.path}`,
     data: info.data,
     method: info.method,
   });
-
-  if (res.data.msg) {
-  }
   return res.data;
 });
 
 const productSlice = createSlice({
-  name: "auth",
+  name: "product",
   initialState: {
     productList: [],
   },
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(product.fulfilled, (state, action) => {
-     if(!action.payload.msg){
+    builder.addCase(productList.fulfilled, (state, action) => {
       state.productList = action.payload;
-     }
+    });
+    builder.addCase(productCRUD.fulfilled, (state, action) => {
+      if (action.payload.msg) {
+        notification["success"]({
+          message: `${action.payload.msg}`,
+        });
+      }
     });
   },
 });
 
 export default productSlice.reducer;
-export { product };
+export { productList, productCRUD };

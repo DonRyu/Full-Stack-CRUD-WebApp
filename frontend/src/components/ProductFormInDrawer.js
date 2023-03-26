@@ -5,7 +5,7 @@ import { PlusOutlined, SettingOutlined } from "@ant-design/icons";
 import ProductDatePicker from "./DatePicker";
 import DeveloperTable from "./DeveloperTable";
 import { useDispatch } from "react-redux";
-import { product } from "../store/productSlice";
+import { productList, productCRUD } from "../store/productSlice";
 const { Option } = Select;
 
 const ProductFormInDrawer = ({ title, productNumber }) => {
@@ -22,7 +22,7 @@ const ProductFormInDrawer = ({ title, productNumber }) => {
     setVisible(true);
     if (productNumber) {
       dispatch(
-        product({
+        productCRUD({
           data: productNumber,
           method: "GET",
           path: `get/${productNumber}`,
@@ -35,18 +35,16 @@ const ProductFormInDrawer = ({ title, productNumber }) => {
 
   const onFinish = (values) => {
     if (title === labels.Add) {
-      dispatch(product({ data: values, method: "POST", path: "post" }));
+      dispatch(productCRUD({ data: values, method: "POST", path: "post" }));
     } else {
       dispatch(
-        product({
+        productCRUD({
           data: { ...values, productNumber },
           method: "PUT",
           path: "put",
         })
       ).then((res) => {
-        if (res.payload.msg) {
-          dispatch(product({ path: "get", data: {}, method: "GET" }));
-        }
+        if (res.payload.msg) return dispatch(productList());
       });
     }
     setVisible(false);

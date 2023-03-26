@@ -12,20 +12,17 @@ const getData = () => {
 
 const getUniqueNumberID = () => {
   const usedNumbers = new Set();
-  let randomNum, formattedNum;
+  let randomNum
   let jsonData = getData();
   let idArr = jsonData.map((item) => {
     return item.productNumber;
   });
   idArr.forEach((element) => usedNumbers.add(element));
   do {
-    randomNum = Math.floor(Math.random() * 1000000);
-    formattedNum = String(randomNum)
-      .padStart(7, "0")
-      .replace(/(\d{4})(\d{3})/, "$1-$2");
-  } while (usedNumbers.has(formattedNum));
+    randomNum = Math.floor(Math.random() * (99999 - 10000 + 1)) + 10000;
+  } while (usedNumbers.has(randomNum));
 
-  return formattedNum;
+  return randomNum;
 };
 
 router.get("/get", (req, res) => {
@@ -40,17 +37,17 @@ router.get("/get", (req, res) => {
 router.post("/post", (req, res) => {
   let jsonData = getData();
   let newProductNumber = getUniqueNumberID();
-  jsonData.push({ productNumber: newProductNumber, ...req.body });
+  jsonData.unshift({ productNumber: newProductNumber, ...req.body });
   const jsonString = JSON.stringify(jsonData);
   fs.writeFileSync(filePath, jsonString);
-  res.status(200).send(jsonData);
+  res.status(200).send({ msg: "Successfully Add" });
 });
 
 router.get("/get/:id", (req, res) => {
   const productNumber = req.params.id;
   let jsonData = getData();
   let selectedData = jsonData.filter((item) => {
-    return item.productNumber === productNumber;
+    return item.productNumber == productNumber
   });
   res.status(200).send(selectedData);
 });
@@ -63,11 +60,13 @@ router.put("/put", (req, res) => {
         ...item,
         ...req.body,
       };
+    } else {
+      return item;
     }
   });
   const jsonString = JSON.stringify(newArr);
   fs.writeFileSync(filePath, jsonString);
-  res.status(200).send({msg:'Successfully edit'});
+  res.status(200).send({ msg: "Successfully Edit" });
 });
 
 router.delete("/delete", (req, res) => {
@@ -76,9 +75,8 @@ router.delete("/delete", (req, res) => {
     return item.productNumber !== req.body.productNumber;
   });
   const jsonString = JSON.stringify(newArr);
-  fs.writeFile(filePath, jsonString, (err, jsonData) => {
-    res.status(200).send(jsonData);
-  });
+  fs.writeFileSync(filePath, jsonString);
+  res.status(200).send({ msg: "Successfully Delete" });
 });
 
 module.exports = router;

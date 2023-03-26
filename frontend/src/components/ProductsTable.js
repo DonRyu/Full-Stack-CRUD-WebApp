@@ -3,25 +3,26 @@ import { useSelector } from "react-redux";
 import { Button, Table, Tag, Popconfirm } from "antd";
 import TotalNumberOfProducts from "./TotalNumberOfProducts";
 import ProductFormInDrawer from "./ProductFormInDrawer";
-import OnSearch from "./OnSearch"
+import OnSearch from "./OnSearch";
 import { labels } from "../Labels";
 import { DeleteOutlined } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
-import { product } from "../store/productSlice";
-
+import { productList, productCRUD } from "../store/productSlice";
 
 const ProductsTable = () => {
-  const productList = useSelector((state) => state.products.productList);
+  const List = useSelector((state) => state.products.productList);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(product({ path: "get", data: {}, method: "GET" }));
+    dispatch(productList());
   }, []);
 
   const deleteProduct = (productNumber) => {
     dispatch(
-      product({ data: { productNumber }, path: "delete", method: "DELETE" })
-    );
+      productCRUD({ data: { productNumber }, path: "delete", method: "DELETE" })
+    ).then((res) => {
+      if (res.payload.msg) return dispatch(productList());
+    });
   };
 
   const columns = [
@@ -90,13 +91,12 @@ const ProductsTable = () => {
 
   return (
     <div style={{ width: "100%", position: "relative" }}>
-      
       <ProductFormInDrawer title={labels.Add} />
-      <OnSearch/>
+      <OnSearch />
       <TotalNumberOfProducts />
       <Table
         columns={columns}
-        dataSource={productList}
+        dataSource={List}
         rowKey={(item) => item.productNumber}
       />
     </div>

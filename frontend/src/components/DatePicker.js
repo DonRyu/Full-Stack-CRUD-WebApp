@@ -3,11 +3,6 @@ import { DatePicker } from "antd";
 import moment from "moment";
 
 const ProductDatePicker = ({ onChange, value, isSetting }) => {
-  // const [date, setDate] = useState("");
-
-  // useEffect(() => {
-  //   isSetting && setDate(value);
-  // }, [date]);
 
   const getDate = (date) => {
     onChange?.(date);
