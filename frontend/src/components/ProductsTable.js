@@ -56,7 +56,11 @@ const ProductsTable = () => {
       dataIndex: "developers",
       render: (developers) => (
         <>
-          <Tooltip title={developers.map((developer) => <div>{developer}</div>)}>
+          <Tooltip
+            title={developers.map((developer, key) => (
+              <div key={key}>{developer}</div>
+            ))}
+          >
             {developers?.map((tag, key) => {
               return <Tag key={key}>{tag.toUpperCase()}</Tag>;
             })}
