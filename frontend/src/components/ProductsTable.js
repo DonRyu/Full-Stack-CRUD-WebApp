@@ -6,7 +6,7 @@ import OnSearch from "./OnSearch";
 import { labels } from "../Labels";
 import { DeleteOutlined } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
-import { productList, productCRUD } from "../store/productSlice";
+import { productList, productCUD } from "../store/productSlice";
 import ProductsPagination from "./ProductsPagination";
 
 const ProductsTable = () => {
@@ -19,7 +19,7 @@ const ProductsTable = () => {
 
   const deleteProduct = (productNumber) => {
     dispatch(
-      productCRUD({ data: { productNumber }, path: "delete", method: "DELETE" })
+      productCUD({ data: { productNumber }, path: "delete", method: "DELETE" })
     ).then((res) => {
       if (res.payload.msg) return dispatch(productList());
     });

@@ -22,7 +22,7 @@ const ProductsPagination = () => {
   return (
     <div style={{ position: "absolute", bottom: 0 }}>
       <Pagination
-        defaultCurrent={1}
+        current={List.currentPage}
         total={List.totalProduct}
         onChange={pageChange}
       />

@@ -14,7 +14,7 @@ import { PlusOutlined, SettingOutlined } from "@ant-design/icons";
 import ProductDatePicker from "./DatePicker";
 import DeveloperTable from "./DeveloperTable";
 import { useDispatch } from "react-redux";
-import { productList, productCRUD } from "../store/productSlice";
+import { productList, productCUD } from "../store/productSlice";
 const { Option } = Select;
 
 const ProductFormInDrawer = ({ title, productNumber }) => {
@@ -31,7 +31,7 @@ const ProductFormInDrawer = ({ title, productNumber }) => {
     setVisible(true);
     if (productNumber) {
       dispatch(
-        productCRUD({
+        productCUD({
           data: productNumber,
           method: "GET",
           path: `get/${productNumber}`,
@@ -49,25 +49,25 @@ const ProductFormInDrawer = ({ title, productNumber }) => {
       });
       return;
     }
-
     if (title === labels.Add) {
+      dispatch(productCUD({ data: values, method: "POST", path: "post" })).then(
+        (res) => {
+          console.log("res", res);
+          res.payload.msg && dispatch(productList({ page: 1 }));
+        }
+      );
+    } else if (title === labels.Edit) {
       dispatch(
-        productCRUD({ data: values, method: "POST", path: "post" })
+        productCUD({
+          data: { ...values, productNumber },
+          method: "PUT",
+          path: "put",
+        })
       ).then((res) => {
-        res.payload.msg && dispatch(productList());
+        res.payload.msg && dispatch(productList({ page: 1 }));
       });
-      return;
     }
 
-    dispatch(
-      productCRUD({
-        data: { ...values, productNumber },
-        method: "PUT",
-        path: "put",
-      })
-    ).then((res) => {
-      res.payload.msg && dispatch(productList());
-    });
     setVisible(false);
     form.resetFields();
   };

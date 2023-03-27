@@ -13,12 +13,35 @@ class Database {
   }
 
   get(query, queryType) {
-    if (query !== "undefined" && queryType !== "undefined") {
+    if (query != "undefined" && queryType != "undefined") {
       return this.getByQuery(query, queryType);
     } else {
       return this.data;
     }
   }
+
+  getByProductNumber(productNumber) {
+    let selectedData = this.data.filter((item) => {
+      return item.productNumber == productNumber;
+    });
+    return selectedData;
+  }
+
+  post(data) {
+    let newProductNumber = this.getUniqueNumberID();
+    this.data.unshift({ productNumber: newProductNumber, ...data });
+    const jsonString = JSON.stringify(this.data);
+    try {
+      fs.writeFileSync(filePath, jsonString);
+      return true;
+    } catch (err) {
+      return false;
+    }
+  }
+
+  put() {}
+
+  delete() {}
 
   getByQuery(query, queryType) {
     if (queryType === SearchOptionMap.ScrumMaster) {
@@ -40,13 +63,19 @@ class Database {
     }
   }
 
-  post() {
-    console.log("=====>");
+  getUniqueNumberID() {
+    const usedNumbers = new Set();
+    let randomNum;
+    let idArr = this.data.map((item) => {
+      return item.productNumber;
+    });
+    idArr.forEach((element) => usedNumbers.add(element));
+    do {
+      randomNum = Math.floor(Math.random() * (99999 - 10000 + 1)) + 10000;
+    } while (usedNumbers.has(randomNum));
+
+    return randomNum;
   }
-
-  put() {}
-
-  delete() {}
 }
 
 module.exports = Database;
