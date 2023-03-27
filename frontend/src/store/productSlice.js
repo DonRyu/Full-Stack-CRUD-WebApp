@@ -7,7 +7,7 @@ const productList = createAsyncThunk(
   "product/list",
   async ({ page, queryType, query }) => {
     const res = await axios({
-      url: `http://localhost:3000/api/products/get?page=${page}&queryType=${queryType}&query=${query}`,
+      url: `http://localhost:3000/api/product/get?page=${page}&queryType=${queryType}&query=${query}`,
       method: "GET",
     });
     return res.data;
@@ -16,7 +16,7 @@ const productList = createAsyncThunk(
 
 const productCUD = createAsyncThunk("product/CRUD", async (info) => {
   const res = await axios({
-    url: `http://localhost:3000/api/products/${info.path}`,
+    url: `http://localhost:3000/api/product/${info.path}`,
     data: info.data,
     method: info.method,
   });

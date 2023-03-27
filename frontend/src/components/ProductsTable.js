@@ -30,19 +30,23 @@ const ProductsTable = () => {
     {
       title: "Product#",
       dataIndex: "productNumber",
+      width:80,
       render: (text) => <a>{text}</a>,
     },
     {
       title: "Name",
       dataIndex: "productName",
+      width:150,
     },
     {
       title: "Scrum Master",
       dataIndex: "scrumMaster",
+      width:150,
     },
     {
       title: "Owner",
       dataIndex: "productOwner",
+      width:200,
     },
     {
       title: "Developers",
@@ -63,6 +67,7 @@ const ProductsTable = () => {
     {
       title: "Methodology",
       dataIndex: "methodology",
+      width: 110,
     },
     {
       title: "",
@@ -110,6 +115,8 @@ const ProductsTable = () => {
         <ProductFormInDrawer title={labels.Add} />
       </div>
       <Table
+        size={"middle"}
+        scroll={{ y: 1000 }}
         pagination={false}
         columns={columns}
         dataSource={List.pageData}

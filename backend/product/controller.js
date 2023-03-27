@@ -1,15 +1,16 @@
 const getProduct = (req, res) => {
     const database = req.context.database;
     const { page, query, queryType } = req.query;
+    const pageNumber = parseInt(page)
     const data = database.get(query, queryType);
     const perPage = 10;
-    const start = (parseInt(page) - 1) * perPage;
+    const start = (parseInt(pageNumber) - 1) * perPage;
     const end = start + perPage;
     const pageData = data.slice(start, end);
     if (pageData) {
       return res.status(200).send({
         pageData: pageData,
-        currentPage: page,
+        currentPage: pageNumber,
         totalPages: Math.ceil(data.length / perPage),
         totalProduct: data.length,
       });

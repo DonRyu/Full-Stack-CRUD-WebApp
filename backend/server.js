@@ -5,7 +5,7 @@ const app = express();
 const port = 3000;
 const Database = require("./database/database");
 const database = new Database();
-const products = require('./products/routes')
+const product = require('./product/routes')
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swaggerDoc.json');
 
@@ -22,7 +22,7 @@ app.use((req, _, next) => {
 });
 
 //routers
-app.use("/api/products", products);
+app.use("/api/product", product);
 
 
 app.listen(port, () => {

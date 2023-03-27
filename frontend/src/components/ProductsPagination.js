@@ -8,7 +8,6 @@ const ProductsPagination = () => {
   const queryInfo = useSelector((state) => state.products.queryData);
   const dispatch = useDispatch();
 
-
   const pageChange = (page) => {
     dispatch(
       productList({
@@ -25,6 +24,7 @@ const ProductsPagination = () => {
         current={List.currentPage}
         total={List.totalProduct}
         onChange={pageChange}
+        showSizeChanger={false}
       />
     </div>
   );

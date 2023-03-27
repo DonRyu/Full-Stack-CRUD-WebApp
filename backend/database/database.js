@@ -16,7 +16,6 @@ class Database {
     if (query != "undefined" && queryType != "undefined") {
       return this.getByQuery(query, queryType);
     } else {
-      console.log("this.data", this.data);
       return this.data;
     }
   }
