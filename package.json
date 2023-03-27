@@ -4,14 +4,15 @@
   "main": "server.js",
   "license": "MIT",
   "scripts": {
-    "server":"nodemon backend/server.js",
-    "client":"cd frontend && npm start",
-    "start":"concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
+    "server": "nodemon backend/server.js",
+    "client": "cd frontend && npm start",
+    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
   },
   "dependencies": {
     "concurrently": "^7.6.0",
     "cors": "^2.8.5",
     "express": "^4.18.2",
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "swagger-ui-express": "^4.6.2"
   }
 }
