@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
 
-
 function getProductList(req, res) {
   const database = req.context.database;
   const { page, query, queryType } = req.query;
   const data = database.get(query, queryType);
+
   const perPage = 10;
-  const start = (parseInt(page)  - 1) * perPage;
+  const start = (parseInt(page) - 1) * perPage;
   const end = start + perPage;
   const pageData = data.slice(start, end);
 

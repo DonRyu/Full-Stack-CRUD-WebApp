@@ -13,7 +13,7 @@ class Database {
   }
 
   get(query, queryType) {
-    if (query && queryType) {
+    if (query !== "undefined" && queryType !== "undefined") {
       return this.getByQuery(query, queryType);
     } else {
       return this.data;
