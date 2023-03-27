@@ -42,8 +42,30 @@ const postProduct = (req, res) => {
   }
 };
 
+const putProduct = (req, res) => {
+  const database = req.context.database;
+  const data = database.put(req.body.productNumber, req.body.values);
+  if (data) {
+    return res.status(200).send({ msg: "Successfully Edit" });
+  } else {
+    return res.status(500).send({ msg: "error" });
+  }
+};
+
+const deleteProduct = (req, res) => {
+  const database = req.context.database;
+  const data = database.delete(req.body.productNumber);
+  if (data) {
+    return res.status(200).send({ msg: "Successfully Delete" });
+  } else {
+    return res.status(500).send({ msg: "error" });
+  }
+};
+
 router.get("/get", getProduct);
 router.get("/get/:id", getProductData);
 router.post("/post", postProduct);
+router.put("/put", putProduct);
+router.delete("/delete", deleteProduct);
 
 module.exports = router;

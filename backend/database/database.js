@@ -21,15 +21,15 @@ class Database {
   }
 
   getByProductNumber(productNumber) {
-    let selectedData = this.data.filter((item) => {
+    const selectedData = this.data.filter((item) => {
       return item.productNumber == productNumber;
     });
     return selectedData;
   }
 
-  post(data) {
-    let newProductNumber = this.getUniqueNumberID();
-    this.data.unshift({ productNumber: newProductNumber, ...data });
+  post(productData) {
+    const newProductNumber = this.getUniqueNumberID();
+    this.data.unshift({ productNumber: newProductNumber, ...productData });
     const jsonString = JSON.stringify(this.data);
     try {
       fs.writeFileSync(filePath, jsonString);
@@ -39,9 +39,38 @@ class Database {
     }
   }
 
-  put() {}
+  put(productNumber, productData) {
+    const newProductList = this.data.map((item) => {
+      if (item.productNumber === productNumber) {
+        return {
+          ...item,
+          ...productData,
+        };
+      } else {
+        return item;
+      }
+    });
+    const jsonString = JSON.stringify(newProductList);
+    try {
+      fs.writeFileSync(filePath, jsonString);
+      return true;
+    } catch (err) {
+      return false;
+    }
+  }
 
-  delete() {}
+  delete(productNumber) {
+    let newProductList = this.data.filter((item) => {
+      return item.productNumber !== productNumber;
+    });
+    const jsonString = JSON.stringify(newProductList);
+    try {
+      fs.writeFileSync(filePath, jsonString);
+      return true;
+    } catch (err) {
+      return false;
+    }
+  }
 
   getByQuery(query, queryType) {
     if (queryType === SearchOptionMap.ScrumMaster) {

@@ -73,6 +73,7 @@ const ProductsTable = () => {
             <ProductFormInDrawer
               title={labels.Edit}
               productNumber={elm.productNumber}
+              currentPage={List.currentPage}
             />
             <Popconfirm
               placement="leftTop"
