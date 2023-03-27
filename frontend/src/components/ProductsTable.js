@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Button, Table, Tag, Popconfirm } from "antd";
+import { Button, Table, Tag, Popconfirm, Tooltip } from "antd";
 import ProductFormInDrawer from "./ProductFormInDrawer";
 import OnSearch from "./OnSearch";
 import { labels } from "../Labels";
@@ -30,34 +30,40 @@ const ProductsTable = () => {
     {
       title: "Product#",
       dataIndex: "productNumber",
-      width:80,
+      width: 80,
       render: (text) => <a>{text}</a>,
     },
     {
       title: "Name",
       dataIndex: "productName",
-      width:150,
+      width: 150,
+      ellipsis: true,
     },
     {
       title: "Scrum Master",
       dataIndex: "scrumMaster",
-      width:150,
+      width: 150,
+      ellipsis: true,
     },
     {
       title: "Owner",
       dataIndex: "productOwner",
-      width:200,
+      width: 200,
+      ellipsis: true,
     },
     {
       title: "Developers",
       dataIndex: "developers",
       render: (developers) => (
         <>
-          {developers?.map((tag, key) => {
-            return <Tag key={key}>{tag.toUpperCase()}</Tag>;
-          })}
+          <Tooltip title={developers.map((developer) => <div>{developer}</div>)}>
+            {developers?.map((tag, key) => {
+              return <Tag key={key}>{tag.toUpperCase()}</Tag>;
+            })}
+          </Tooltip>
         </>
       ),
+      ellipsis: true,
     },
     {
       title: "Start Date",
@@ -116,7 +122,7 @@ const ProductsTable = () => {
       </div>
       <Table
         size={"middle"}
-        scroll={{ y: 1000 }}
+        scroll={{ y: 600 }}
         pagination={false}
         columns={columns}
         dataSource={List.pageData}

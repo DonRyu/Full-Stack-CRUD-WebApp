@@ -7,7 +7,7 @@ function App() {
       style={{
         backgroundColor: "#f4f4f4",
         minWidth: 1180,
-        minHeight: 800,
+        minHeight: 750,
         position: "relative",
       }}
     >
