@@ -7,7 +7,7 @@ const Database = require("./database/database");
 const database = new Database();
 const products = require('./products/routes')
 const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('./swagger.json');
+const swaggerDocument = require('./swaggerDoc.json');
 
 
 //middleware
