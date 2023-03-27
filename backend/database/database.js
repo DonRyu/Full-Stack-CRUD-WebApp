@@ -16,6 +16,7 @@ class Database {
     if (query != "undefined" && queryType != "undefined") {
       return this.getByQuery(query, queryType);
     } else {
+      console.log("this.data", this.data);
       return this.data;
     }
   }
@@ -53,6 +54,7 @@ class Database {
     const jsonString = JSON.stringify(newProductList);
     try {
       fs.writeFileSync(filePath, jsonString);
+      this.data = newProductList;
       return true;
     } catch (err) {
       return false;
@@ -66,6 +68,7 @@ class Database {
     const jsonString = JSON.stringify(newProductList);
     try {
       fs.writeFileSync(filePath, jsonString);
+      this.data = newProductList;
       return true;
     } catch (err) {
       return false;

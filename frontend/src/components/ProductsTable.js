@@ -14,6 +14,7 @@ const ProductsTable = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log('asdasdas======')
     dispatch(productList({ page: 1 }));
   }, []);
 
@@ -21,7 +22,8 @@ const ProductsTable = () => {
     dispatch(
       productCUD({ data: { productNumber }, path: "delete", method: "DELETE" })
     ).then((res) => {
-      if (res.payload.msg) return dispatch(productList());
+      if (res.payload.msg)
+        return dispatch(productList({ page: List.currentPage }));
     });
   };
 
@@ -95,7 +97,7 @@ const ProductsTable = () => {
   return (
     <div
       style={{
-       padding:35
+        padding: 35,
       }}
     >
       <div
