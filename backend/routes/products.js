@@ -44,8 +44,6 @@ function getHandler(req, res) {
   }
 }
 
-router.get("/get", getHandler);
-
 router.post("/post", (req, res) => {
   let jsonData = getData();
   let newProductNumber = getUniqueNumberID();
@@ -91,4 +89,10 @@ router.delete("/delete", (req, res) => {
   res.status(200).send({ msg: "Successfully Delete" });
 });
 
+router.get("/test",(req,res)=>{
+  req.context.database.post()
+})
+
+
+router.get("/get", getHandler);
 module.exports = router;
