@@ -1,14 +1,18 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { notification } from "antd";
+import { SearchOptionMap } from "../Labels";
 
-const productList = createAsyncThunk("product/list", async () => {
-  const res = await axios({
-    url: `http://localhost:3000/api/products/get`,
-    method: "GET",
-  });
-  return res.data;
-});
+const productList = createAsyncThunk(
+  "product/list",
+  async ({ page, queryType, query }) => {
+    const res = await axios({
+      url: `http://localhost:3000/api/products/get?page=${page}&queryType=${queryType}&query=${query}`,
+      method: "GET",
+    });
+    return res.data;
+  }
+);
 
 const productCRUD = createAsyncThunk("product/CRUD", async (info) => {
   const res = await axios({
@@ -19,21 +23,28 @@ const productCRUD = createAsyncThunk("product/CRUD", async (info) => {
   return res.data;
 });
 
-const productSearch = createAsyncThunk("product/search", async (info) => {
-  const res = await axios({
-    url: `http://localhost:3000/api/search/${info.path}`,
-    data: info.data,
-    method: info.method,
-  });
-  return res.data;
-});
+// const productSearch = createAsyncThunk("product/search", async (info) => {
+//   const res = await axios({
+//     url: `http://localhost:3000/api/search/${info.path}`,
+//     data: info.data,
+//     method: info.method,
+//   });
+//   return res.data;
+// });
 
 const productSlice = createSlice({
   name: "product",
   initialState: {
     productList: [],
+    queryData: {
+      queryType: SearchOptionMap[0].value
+    },
   },
-  reducers: {},
+  reducers: {
+    getQueryData: (state, action) => {
+      state.queryData = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(productList.fulfilled, (state, action) => {
       state.productList = action.payload;
@@ -45,11 +56,9 @@ const productSlice = createSlice({
         });
       }
     });
-    builder.addCase(productSearch.fulfilled, (state, action) => {
-      state.productList = action.payload;
-    });
   },
 });
 
 export default productSlice.reducer;
-export { productList, productCRUD, productSearch };
+export const { getQueryData } = productSlice.actions;
+export { productList, productCRUD };

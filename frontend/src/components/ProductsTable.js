@@ -7,13 +7,14 @@ import { labels } from "../Labels";
 import { DeleteOutlined } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
 import { productList, productCRUD } from "../store/productSlice";
+import ProductsPagination from "./ProductsPagination";
 
 const ProductsTable = () => {
   const List = useSelector((state) => state.products.productList);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(productList());
+    dispatch(productList({ page: 1 }));
   }, []);
 
   const deleteProduct = (productNumber) => {
@@ -93,9 +94,7 @@ const ProductsTable = () => {
   return (
     <div
       style={{
-        paddingRight: 30,
-        paddingLeft: 30,
-        paddingTop: 30,
+       padding:35
       }}
     >
       <div
@@ -109,10 +108,12 @@ const ProductsTable = () => {
         <ProductFormInDrawer title={labels.Add} />
       </div>
       <Table
+        pagination={false}
         columns={columns}
-        dataSource={List}
+        dataSource={List.pageData}
         rowKey={(item) => item.productNumber}
       />
+      <ProductsPagination />
     </div>
   );
 };
