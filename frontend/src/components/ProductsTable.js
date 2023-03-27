@@ -14,7 +14,6 @@ const ProductsTable = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('asdasdas======')
     dispatch(productList({ page: 1 }));
   }, []);
 

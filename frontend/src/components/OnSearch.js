@@ -29,7 +29,6 @@ const OnSearch = () => {
     <div
       style={{
         display: "flex",
-        width: 500,
         justifyContent: "space-evenly",
         alignItems: "center",
       }}
@@ -37,10 +36,11 @@ const OnSearch = () => {
       <Select
         onChange={(value) => dispatch(getQueryData({ queryType: value }))}
         defaultValue={SearchOptionMap[0].value}
-        style={{ width: 180, height: "100%" }}
+        style={{ width: 140, height: "100%",marginRight:5 }}
         options={SearchOptionMap}
       />
       <Search
+       style={{ width: 300 }}
         disabled={loading}
         placeholder="input search text"
         enterButton="Search"
