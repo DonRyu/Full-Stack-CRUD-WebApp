@@ -25,6 +25,16 @@ const OnSearch = () => {
     setLoading(false);
   };
 
+  const validateInput = (e) => {
+    const pattern = /[^a-zA-Z\s]/gi; // prevent special characters and number
+    if (pattern.test(e.key)) {
+      e.preventDefault();
+    }
+    if (e.target.value.length >= 30) {
+      e.preventDefault();
+    }
+  };
+
   return (
     <div
       style={{
@@ -36,15 +46,16 @@ const OnSearch = () => {
       <Select
         onChange={(value) => dispatch(getQueryData({ queryType: value }))}
         defaultValue={SearchOptionMap[0].value}
-        style={{ width: 140, height: "100%",marginRight:5 }}
+        style={{ width: 140, height: "100%", marginRight: 5 }}
         options={SearchOptionMap}
       />
       <Search
-       style={{ width: 300 }}
+        style={{ width: 300 }}
         disabled={loading}
         placeholder="input search text"
         enterButton="Search"
         onSearch={onPress}
+        onKeyPress={validateInput}
       />
       <ProductsTotalNumber />
     </div>
