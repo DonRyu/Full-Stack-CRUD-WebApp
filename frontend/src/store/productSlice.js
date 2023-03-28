@@ -44,19 +44,8 @@ const productSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getProductList.rejected, (state, action) => {
-      notification["error"]({
-        message: `${ErrorMsgMap.serverError}`,
-      });
-      state.getProductList = [];
-    });
     builder.addCase(getProductList.fulfilled, (state, action) => {
       state.getProductList = action.payload;
-    });
-    builder.addCase(productCRUD.rejected, (state, action) => {
-      notification["error"]({
-        message: `${ErrorMsgMap.serverError}`,
-      });
     });
     builder.addCase(productCRUD.fulfilled, (state, action) => {
       if (action.payload.msg) {
@@ -64,6 +53,17 @@ const productSlice = createSlice({
           message: `${action.payload.msg}`,
         });
       }
+    });
+    builder.addCase(productCRUD.rejected, (state, action) => {
+      notification["error"]({
+        message: `${ErrorMsgMap.serverError}`,
+      });
+    });
+    builder.addCase(getProductList.rejected, (state, action) => {
+      notification["error"]({
+        message: `${ErrorMsgMap.serverError}`,
+      });
+      state.getProductList = [];
     });
   },
 });
