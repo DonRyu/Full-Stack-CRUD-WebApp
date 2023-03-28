@@ -9,12 +9,12 @@ import {
   Select,
   notification,
 } from "antd";
-import { labels, MethodologyMap } from "../Labels";
+import { labels, MethodologyMap } from "../../Labels";
 import { PlusOutlined, SettingOutlined } from "@ant-design/icons";
-import ProductDatePicker from "./DatePicker";
-import DeveloperTable from "./DeveloperTable";
+import ProductDatePicker from "../common/DatePicker";
+import DeveloperTable from "../common/DeveloperTable";
 import { useDispatch } from "react-redux";
-import { getProductList, productCRUD } from "../store/productSlice";
+import { getProductList, productCRUD } from "../../store/productSlice";
 const { Option } = Select;
 
 const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {

@@ -1,7 +1,7 @@
 import React from "react";
 import { Pagination } from "antd";
 import { useSelector, useDispatch } from "react-redux";
-import { getProductList } from "../store/productSlice";
+import { getProductList } from "../../store/productSlice";
 
 const ProductsPagination = () => {
   const List = useSelector((state) => state.products.getProductList);

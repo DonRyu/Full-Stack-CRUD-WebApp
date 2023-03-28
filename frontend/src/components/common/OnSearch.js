@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Input, Select } from "antd";
-import { SearchOptionMap } from "../Labels";
+import { SearchOptionMap } from "../../Labels";
 import { useDispatch, useSelector } from "react-redux";
-import { getProductList, getQueryData } from "../store/productSlice";
-import ProductsTotalNumber from "./ProductsTotalNumber";
+import { getProductList, getQueryData } from "../../store/productSlice";
+import ProductsTotalNumber from "../product/ProductTotalNumber";
 const { Search } = Input;
 
 const OnSearch = () => {

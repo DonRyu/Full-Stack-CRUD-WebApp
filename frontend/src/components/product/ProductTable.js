@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Button, Table, Tag, Popconfirm, Tooltip } from "antd";
-import ProductFormInDrawer from "./ProductFormInDrawer";
-import OnSearch from "./OnSearch";
-import { labels } from "../Labels";
+import { labels } from "../../Labels";
 import { DeleteOutlined } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
-import { getProductList, productCRUD } from "../store/productSlice";
-import ProductsPagination from "./ProductsPagination";
+import { getProductList, productCRUD } from "../../store/productSlice";
+import OnSearch from "../common/OnSearch";
+import ProductPagination from "./ProductPagination";
+import ProductFormInDrawer from "./ProductFormInDrawer";
 
 const ProductsTable = () => {
   const List = useSelector((state) => state.products.getProductList);
@@ -132,7 +132,7 @@ const ProductsTable = () => {
         dataSource={List.pageData}
         rowKey={(item) => item.productNumber}
       />
-      <ProductsPagination />
+      <ProductPagination />
     </div>
   );
 };

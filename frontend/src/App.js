@@ -1,5 +1,5 @@
 import React from "react";
-import ProductsTable from "./components/ProductsTable";
+import ProductTable from "./components/product/ProductTable";
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
         position: "relative",
       }}
     >
-      <ProductsTable />
+      <ProductTable />
     </div>
   );
 }
