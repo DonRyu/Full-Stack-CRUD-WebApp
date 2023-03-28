@@ -6,8 +6,14 @@ import { SearchOptionMap } from "../Labels";
 const productList = createAsyncThunk(
   "product/list",
   async ({ page, queryType, query }) => {
+    let url;
+    if (queryType && query) {
+      url = `http://localhost:3000/api/product?page=${page}&queryType=${queryType}&query=${query}`;
+    } else {
+      url = `http://localhost:3000/api/product?page=${page}`;
+    }
     const res = await axios({
-      url: `http://localhost:3000/api/product?page=${page}&queryType=${queryType}&query=${query}`,
+      url,
       method: "GET",
     });
     return res.data;
@@ -16,20 +22,19 @@ const productList = createAsyncThunk(
 
 const productCUD = createAsyncThunk("product/CRUD", async (info) => {
   const res = await axios({
-    url: `http://localhost:3000/api/product/${info?.id??''}`,
+    url: `http://localhost:3000/api/product/${info?.id ?? ""}`,
     data: info.data,
     method: info.method,
   });
   return res.data;
 });
 
-
 const productSlice = createSlice({
   name: "product",
   initialState: {
     productList: [],
     queryData: {
-      queryType: SearchOptionMap[0].value
+      queryType: SearchOptionMap[0].value,
     },
   },
   reducers: {
