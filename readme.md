@@ -62,5 +62,7 @@ To run without error, you need to install node modules for both frontend and bac
 	* Open another terminal, type 'npm run client' and confirm that application is running on localhost:3001
 		> npm run client
 
+*You should run backend first and run client
+
 ## Swagger Documentation
 After the server is running you can see at [http://localhost:3000/api/api-docs](http://localhost:3000/api/api-docs).
