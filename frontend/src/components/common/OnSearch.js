@@ -26,11 +26,11 @@ const OnSearch = () => {
   };
 
   const validateInput = (e) => {
-    const pattern = /[^a-zA-Z\s]/gi; // prevent special characters and number
+    const pattern = /[^a-zA-Z\s]/gi;
     if (pattern.test(e.key)) {
       e.preventDefault();
     }
-    if (e.target.value.length >= 30) {
+    if (e.target.value.length >= 40) {
       e.preventDefault();
     }
   };

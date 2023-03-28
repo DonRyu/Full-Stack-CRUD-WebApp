@@ -16,6 +16,19 @@ import DeveloperTable from "../common/DeveloperTable";
 import { useDispatch } from "react-redux";
 import { getProductList, productCRUD } from "../../store/productSlice";
 const { Option } = Select;
+const MAX_INPUT_LENGTH = 40;
+const VALIDATOR = {
+  validator: (_, value) => {
+    const pattern = /^[a-zA-Z\s]$/;
+    if (!pattern.test(value)) {
+      return Promise.reject(
+        "Please enter only alphabetical characters and spaces"
+      );
+    }
+    return Promise.resolve();
+  },
+  validateTrigger: "onBlur",
+};
 
 const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
   const [form] = Form.useForm();
@@ -110,10 +123,15 @@ const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
                 rules={[
                   {
                     required: true,
+                    message: "Please enter a product name",
                   },
+                  VALIDATOR,
                 ]}
               >
-                <Input placeholder={labels.ProductName} />
+                <Input
+                  placeholder={labels.ProductName}
+                  maxLength={MAX_INPUT_LENGTH}
+                />
               </Form.Item>
             </Col>
             <Col span={12}>
@@ -126,7 +144,10 @@ const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
                   },
                 ]}
               >
-                <Input placeholder={labels.ProductOwner} />
+                <Input
+                  placeholder={labels.ProductOwner}
+                  maxLength={MAX_INPUT_LENGTH}
+                />
               </Form.Item>
             </Col>
           </Row>
@@ -141,7 +162,10 @@ const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
                   },
                 ]}
               >
-                <Input placeholder={labels.ScrumMaster} />
+                <Input
+                  placeholder={labels.ScrumMaster}
+                  maxLength={MAX_INPUT_LENGTH}
+                />
               </Form.Item>
             </Col>
             <Col span={12}>
