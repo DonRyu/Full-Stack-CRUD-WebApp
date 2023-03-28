@@ -16,7 +16,7 @@ const productList = createAsyncThunk(
 
 const productCUD = createAsyncThunk("product/CRUD", async (info) => {
   const res = await axios({
-    url: `http://localhost:3000/api/product/${info.path}`,
+    url: `http://localhost:3000/api/product/${info?.id??''}`,
     data: info.data,
     method: info.method,
   });

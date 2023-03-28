@@ -19,7 +19,7 @@ const ProductsTable = () => {
 
   const deleteProduct = (productNumber) => {
     dispatch(
-      productCUD({ data: { productNumber }, path: "delete", method: "DELETE" })
+      productCUD({ data: { productNumber }, method: "DELETE" })
     ).then((res) => {
       if (res.payload.msg)
         return dispatch(productList({ page: List.currentPage }));

@@ -34,7 +34,7 @@ const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
         productCUD({
           data: productNumber,
           method: "GET",
-          path: `${productNumber}`,
+          id: `${productNumber}`,
         })
       ).then((res) => {
         form.setFieldsValue({ ...res.payload[0] });
@@ -50,7 +50,7 @@ const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
       return;
     }
     if (title === labels.Add) {
-      dispatch(productCUD({ data: values, method: "POST", path: "post" })).then(
+      dispatch(productCUD({ data: values, method: "POST" })).then(
         (res) => {
           res.payload.msg && dispatch(productList({ page: 1 }));
         }
@@ -60,7 +60,6 @@ const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
         productCUD({
           data: { values, productNumber },
           method: "PUT",
-          path: "put",
         })
       ).then((res) => {
         res.payload.msg && dispatch(productList({ page: currentPage }));

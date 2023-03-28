@@ -10,8 +10,8 @@ const {
 
 router.get("/", getProduct);
 router.get("/:id", getProductData);
-router.post("/post", postProduct);
-router.put("/put", putProduct);
-router.delete("/delete", deleteProduct);
+router.post("/", postProduct);
+router.put("/", putProduct);
+router.delete("/", deleteProduct);
 
 module.exports = router;
