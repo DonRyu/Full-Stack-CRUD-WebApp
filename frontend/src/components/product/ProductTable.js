@@ -47,7 +47,7 @@ const ProductsTable = () => {
     },
     {
       title: "Owner",
-      dataIndex: "productOwner",
+      dataIndex: "productOwnerName",
       width: 200,
       ellipsis: true,
     },

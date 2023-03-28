@@ -135,7 +135,7 @@ const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
             </Col>
             <Col span={12}>
               <Form.Item
-                name="productOwner"
+                name="productOwnerName"
                 label={labels.ProductOwner}
                 rules={[
                   {
