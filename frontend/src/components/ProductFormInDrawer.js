@@ -34,7 +34,7 @@ const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
         productCUD({
           data: productNumber,
           method: "GET",
-          path: `get/${productNumber}`,
+          path: `${productNumber}`,
         })
       ).then((res) => {
         form.setFieldsValue({ ...res.payload[0] });

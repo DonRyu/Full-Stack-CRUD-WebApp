@@ -8,8 +8,8 @@ const {
   deleteProduct,
 } = require("./controller");
 
-router.get("/get", getProduct);
-router.get("/get/:id", getProductData);
+router.get("/", getProduct);
+router.get("/:id", getProductData);
 router.post("/post", postProduct);
 router.put("/put", putProduct);
 router.delete("/delete", deleteProduct);

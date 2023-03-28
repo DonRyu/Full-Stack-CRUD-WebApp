@@ -7,7 +7,7 @@ const productList = createAsyncThunk(
   "product/list",
   async ({ page, queryType, query }) => {
     const res = await axios({
-      url: `http://localhost:3000/api/product/get?page=${page}&queryType=${queryType}&query=${query}`,
+      url: `http://localhost:3000/api/product?page=${page}&queryType=${queryType}&query=${query}`,
       method: "GET",
     });
     return res.data;
