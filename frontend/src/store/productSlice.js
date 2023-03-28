@@ -1,28 +1,29 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { notification } from "antd";
-import { SearchOptionMap } from "../Labels";
+import { SearchOptionMap, ErrorMsgMap } from "../Labels";
+
+const Api = axios.create({
+  baseURL: "http://localhost:3000/api",
+});
 
 const getProductList = createAsyncThunk(
   "product/list",
   async ({ page, queryType, query }) => {
     let url;
     if (queryType && query) {
-      url = `http://localhost:3000/api/product?page=${page}&queryType=${queryType}&query=${query}`;
+      url = `/product?page=${page}&queryType=${queryType}&query=${query}`;
     } else {
-      url = `http://localhost:3000/api/product?page=${page}`;
+      url = `/product?page=${page}`;
     }
-    const res = await axios({
-      url,
-      method: "GET",
-    });
+    const res = await Api.get(url);
     return res.data;
   }
 );
 
 const productCRUD = createAsyncThunk("product/CRUD", async (info) => {
-  const res = await axios({
-    url: `http://localhost:3000/api/product/${info?.id ?? ""}`,
+  const res = await Api({
+    url: `/product/${info?.id ?? ""}`,
     data: info.data,
     method: info.method,
   });
@@ -43,8 +44,19 @@ const productSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    builder.addCase(getProductList.rejected, (state, action) => {
+      notification["error"]({
+        message: `${ErrorMsgMap.serverError}`,
+      });
+      state.getProductList = [];
+    });
     builder.addCase(getProductList.fulfilled, (state, action) => {
       state.getProductList = action.payload;
+    });
+    builder.addCase(productCRUD.rejected, (state, action) => {
+      notification["error"]({
+        message: `${ErrorMsgMap.serverError}`,
+      });
     });
     builder.addCase(productCRUD.fulfilled, (state, action) => {
       if (action.payload.msg) {

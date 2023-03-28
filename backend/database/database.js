@@ -50,7 +50,10 @@ class Database {
    * @returns {boolean} - true if successful, false if not
    */
   post(productData) {
-    const newProductNumber = this.getUniqueNumberID();
+    const newProductNumber = undefined;
+    if (typeof newProductNumber !== "number") {
+      return false;
+    }
     this.data.unshift({ productNumber: newProductNumber, ...productData });
     const jsonString = JSON.stringify(this.data);
     try {

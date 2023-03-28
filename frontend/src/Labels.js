@@ -30,4 +30,8 @@ export const SearchOptionMap = [
     label: "Developer",
     value: "developer",
   },
-]
+];
+
+export const ErrorMsgMap = {
+  serverError: "500 Error",
+};

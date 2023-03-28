@@ -8,7 +8,7 @@ function App() {
         width:'100%',
         backgroundColor: "#f4f4f4",
         minWidth: 1180,
-        minHeight: 750,
+        minHeight: 740,
         position: "relative",
       }}
     >
