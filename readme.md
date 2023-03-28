@@ -1,14 +1,44 @@
-This repository consists of a frontend and a backend folder.
+# Dongheon-Ryu-IS24-full-stack-competition-req97073
 
-To install the required Node modules for the frontend, please follow the steps below:
+* Frontend: React.js, Javascript
+* Backend: Node.js Express, Javascript
 
-Open a terminal window and navigate to the root folder of the repository.
-Change directory to the frontend folder by running cd frontend.
-Run the command npm install to install the required Node modules.
-To install the required Node modules for the backend, please follow the steps below:
+## How to install 
+```
+**Project tree**
 
-Open a terminal window and navigate to the root folder of the repository.
-Run the command npm install to install the required Node modules.
-After installing the required Node modules for both the frontend and backend, you can run the application.
+Root folder
+|
+├── backend
+|	├── database
+│   ├── product
+│   ├── server.js
+|	└── swaggerDoc.json
+|
+├── frontend
+│   ├── public
+│   ├── src
+│   ├── package-lock.json
+|	└── package.json
+|
+├── .gitignore
+├── package-lock.json
+├── package.json
+└── README.md
+```
+This repository consists of a frontend and a backend folder. 
+To run without error, you need to install node modules for both frontend and backend.
 
-Please note that you should start the backend server first and then start the frontend server.
+**Important**
+**Make sure your computer has Node.js and it should be above version of  17.x  **
+
+
+### Frontend
+
+To install the necessary Node.js modules for the frontend, navigate to the frontend directory using the `cd` command and run the following command:
+
+
+### Usage
+
+To start the server, navigate to the root directory and run the following command:
+
