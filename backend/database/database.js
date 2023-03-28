@@ -50,7 +50,7 @@ class Database {
    * @returns {boolean} - true if successful, false if not
    */
   post(productData) {
-    const newProductNumber = undefined;
+    const newProductNumber = this.getUniqueNumberID();
     if (typeof newProductNumber !== "number") {
       return false;
     }

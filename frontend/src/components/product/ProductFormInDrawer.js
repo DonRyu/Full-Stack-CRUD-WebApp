@@ -50,7 +50,7 @@ const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
     }
     if (title === labels.Add) {
       dispatch(productCRUD({ data: values, method: "POST" })).then((res) => {
-        res.payload.msg && dispatch(getProductList({ page: 1 }));
+        res.payload?.msg && dispatch(getProductList({ page: 1 }));
       });
     } else if (title === labels.Edit) {
       dispatch(
@@ -60,7 +60,7 @@ const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
           id: productNumber,
         })
       ).then((res) => {
-        res.payload.msg && dispatch(getProductList({ page: currentPage }));
+        res.payload?.msg && dispatch(getProductList({ page: currentPage }));
       });
     }
 
