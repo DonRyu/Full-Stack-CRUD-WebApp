@@ -11,9 +11,9 @@ const ProductDatePicker = ({ onChange, value, isSetting }) => {
     <span>
       <DatePicker
         style={{ width: "100%" }}
-        format={"YYYY-MM-DD"}
+        format={"YYYY/MM/DD"}
         onChange={(_, date) => getDate(date)}
-        value={isSetting ? dayjs(value, "YYYY-MM-DD") : undefined}
+        value={isSetting ? dayjs(value, "YYYY/MM/DD") : undefined}
         disabled={isSetting}
       />
     </span>
