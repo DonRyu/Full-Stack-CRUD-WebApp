@@ -10,32 +10,32 @@
   "paths": {
     "/product": {
       "get": {
-        "summary": "Get all products",
+        "summary": "Get products by page,query",
         "produces": ["application/json"],
         "parameters": [
           {
             "in": "query",
             "name": "page",
-            "description": "The page number to retrieve (default: 1)",
+            "description": "Default 1, User can change the pagination of total products list without query and query type . Each page has 10 products. If the query results are bigger than 10, user can change the pagination of products list from the query results.",
             "type": "integer"
           },
           {
             "in": "query",
             "name": "queryType",
-            "description": "The type of query to perform (e.g. \"scrumMaster\", \"developer\")",
+            "description": "The type of column to query (\"scrumMaster\", \"developer\"). The default query type is scrumMaster.",
             "type": "string",
             "enum": ["scrumMaster", "developer"]
           },
           {
             "in": "query",
             "name": "query",
-            "description": "The query to search products by",
-            "type": "string"
+            "description": "Lowercase only without spacing. If the user query, it always returns the first 10 values of the total results by query. Pagination is changed to 1. For example, when user is in page 10, user can query developer Alice Kim. It returns first 10 products out of total query results and pagination is moved to 1",
+            "type": "string" 
           }
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Success",
             "schema": {
               "type": "object",
               "properties": {
@@ -55,6 +55,11 @@
                       },
                       "scrumMaster": {
                         "type": "string"
+                      },
+                      "startDate": {
+                        "type": "string",
+                        "pattern": "^(201[0-9]|202[0-2])\/(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])$",
+                        "description": "The start date of the project in the format YYYY/MM/DD."
                       },
                       "developers": {
                         "type": "array",
@@ -104,9 +109,6 @@
             "schema": {
               "type": "object",
               "properties": {
-                "productNumber": {
-                  "type": "integer"
-                },
                 "productName": {
                   "type": "string"
                 },
@@ -115,6 +117,11 @@
                 },
                 "scrumMaster": {
                   "type": "string"
+                },
+                "startDate": {
+                  "type": "string",
+                  "pattern": "^(201[0-9]|202[0-2])\/(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])$",
+                  "description": "The start date of the project in the format YYYY/MM/DD."
                 },
                 "developers": {
                   "type": "array",
@@ -170,10 +177,38 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Success",
             "schema": {
               "type": "object",
-              "properties": {}
+              "properties": {
+                "productNumber": {
+                  "type": "integer"
+                },
+                "productName": {
+                  "type": "string"
+                },
+                "productOwner": {
+                  "type": "string"
+                },
+                "scrumMaster": {
+                  "type": "string"
+                },
+                "startDate": {
+                  "type": "string",
+                  "pattern": "^(201[0-9]|202[0-2])\/(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])$",
+                  "description": "The start date of the project in the format YYYY/MM/DD."
+                },
+                "developers": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "methodology": {
+                  "type": "string",
+                  "enum": ["Agile", "Waterfall"]
+                }
+              }
             }
           },
           "500": {
@@ -213,9 +248,6 @@
                   "type": "string"
                 },
                 "scrumMaster": {
-                  "type": "string"
-                },
-                "startDate": {
                   "type": "string"
                 },
                 "developers": {

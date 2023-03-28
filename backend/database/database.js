@@ -42,7 +42,7 @@ class Database {
     const selectedData = this.data.filter((item) => {
       return item.productNumber == productNumber;
     });
-    return selectedData;
+    return selectedData[0];
   }
   /**
    * Adds a new product to the data

@@ -36,7 +36,7 @@ const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
           id: `${productNumber}`,
         })
       ).then((res) => {
-        form.setFieldsValue({ ...res.payload[0] });
+        form.setFieldsValue({ ...res.payload });
       });
     }
   };
