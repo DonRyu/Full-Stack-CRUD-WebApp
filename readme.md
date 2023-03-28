@@ -8,23 +8,21 @@
 **Project tree**
 
 Root folder
-|
 ├── backend
-|	├── database
+│   ├── database
 │   ├── product
 │   ├── server.js
-|	└── swaggerDoc.json
-|
+│   └── swaggerDoc.json
 ├── frontend
 │   ├── public
 │   ├── src
 │   ├── package-lock.json
-|	└── package.json
-|
+│   └── package.json
 ├── .gitignore
 ├── package-lock.json
 ├── package.json
-└── README.md
+└── README.md 
+
 ```
 This repository consists of a frontend and a backend folder. 
 To run without error, you need to install node modules for both frontend and backend.
