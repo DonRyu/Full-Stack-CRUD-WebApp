@@ -24,7 +24,7 @@
             "name": "queryType",
             "description": "The type of column to query (\"scrumMaster\", \"developer\"). The default query type is scrumMaster.",
             "type": "string",
-            "enum": ["scrumMaster", "developer"]
+            "enum": ["scrumMasterName", "developer"]
           },
           {
             "in": "query",
@@ -53,7 +53,7 @@
                       "productOwner": {
                         "type": "string"
                       },
-                      "scrumMaster": {
+                      "scrumMasterName": {
                         "type": "string"
                       },
                       "startDate": {
@@ -115,7 +115,7 @@
                 "productOwner": {
                   "type": "string"
                 },
-                "scrumMaster": {
+                "scrumMasterName": {
                   "type": "string"
                 },
                 "startDate": {
@@ -190,7 +190,7 @@
                 "productOwner": {
                   "type": "string"
                 },
-                "scrumMaster": {
+                "scrumMasterName": {
                   "type": "string"
                 },
                 "startDate": {
@@ -247,7 +247,7 @@
                 "productOwner": {
                   "type": "string"
                 },
-                "scrumMaster": {
+                "scrumMasterName": {
                   "type": "string"
                 },
                 "developers": {

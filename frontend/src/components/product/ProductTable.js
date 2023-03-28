@@ -41,7 +41,7 @@ const ProductsTable = () => {
     },
     {
       title: "Scrum Master",
-      dataIndex: "scrumMaster",
+      dataIndex: "scrumMasterName",
       width: 150,
       ellipsis: true,
     },

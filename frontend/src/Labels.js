@@ -24,7 +24,7 @@ export const MethodologyMap = [
 export const SearchOptionMap = [
   {
     label: "Scrum Master",
-    value: "scrumMaster",
+    value: "scrumMasterName",
   },
   {
     label: "Developer",

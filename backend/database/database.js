@@ -9,7 +9,7 @@ const fs = require("fs");
 const path = require("path");
 const filePath = path.join(__dirname, "products.json");
 const SearchOptionMap = {
-  ScrumMaster: "scrumMaster",
+  ScrumMaster: "scrumMasterName",
   Developer: "developer",
 };
 
@@ -119,7 +119,7 @@ class Database {
   getByQuery(query, queryType) {
     if (queryType === SearchOptionMap.ScrumMaster) {
       const result = this.data.filter((item) => {
-        const itemScrumMaster = item.scrumMaster.replace(/(\s*)/g, "");
+        const itemScrumMaster = item.scrumMasterName.replace(/(\s*)/g, "");
         return itemScrumMaster.toLowerCase().includes(query.toLowerCase());
       });
       return result;

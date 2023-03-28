@@ -124,8 +124,7 @@ const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
                   {
                     required: true,
                     message: "Please enter a product name",
-                  },
-                  VALIDATOR,
+                  }
                 ]}
               >
                 <Input
@@ -154,7 +153,7 @@ const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
           <Row gutter={10}>
             <Col span={12}>
               <Form.Item
-                name="scrumMaster"
+                name="scrumMasterName"
                 label={labels.ScrumMaster}
                 rules={[
                   {
