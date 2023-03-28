@@ -144,7 +144,7 @@ const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
                 ]}
               >
                 <Input
-                  placeholder={labels.ProductOwner}
+                  placeholder={labels.Name}
                   maxLength={MAX_INPUT_LENGTH}
                 />
               </Form.Item>
@@ -162,7 +162,7 @@ const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
                 ]}
               >
                 <Input
-                  placeholder={labels.ScrumMaster}
+                  placeholder={labels.Name}
                   maxLength={MAX_INPUT_LENGTH}
                 />
               </Form.Item>

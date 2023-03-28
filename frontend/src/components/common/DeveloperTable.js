@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Form, Input, notification } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
+import {labels} from "../../Labels"
 
 const DeveloperTable = () => {
   const addDevloper = (fields, add) => {
@@ -49,7 +50,7 @@ const DeveloperTable = () => {
                     },
                   ]}
                 >
-                  <Input placeholder={"Full Name"} />
+                  <Input placeholder={labels.Name} />
                 </Form.Item>
                 <Form.Item>
                   <MinusCircleOutlined

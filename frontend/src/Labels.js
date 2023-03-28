@@ -8,6 +8,7 @@ export const labels = {
   Developers: "Developers",
   StartDate: "Start Date",
   Methodology: "Methodology",
+  Name:"Firstname Lastname"
 };
 
 export const MethodologyMap = [
