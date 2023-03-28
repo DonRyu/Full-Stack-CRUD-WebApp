@@ -71,7 +71,8 @@ const postProduct = (req, res) => {
  */
 const putProduct = (req, res) => {
   const database = req.context.database;
-  const data = database.put(req.body.productNumber, req.body.values);
+  const productNumber = parseInt(req.params.id);
+  const data = database.put(productNumber, req.body);
   if (data) {
     return res.status(200).send({ msg: "Successfully Edit" });
   } else {
@@ -81,14 +82,14 @@ const putProduct = (req, res) => {
 
 /**
 * Delete a product from the database.
-*
 @param {*} req - The HTTP request object.
 @param {*} res - The HTTP response object.
 @returns A success message or an error message.
 */
 const deleteProduct = (req, res) => {
   const database = req.context.database;
-  const data = database.delete(req.body.productNumber);
+  const productNumber = parseInt(req.params.id);
+  const data = database.delete(productNumber);
   if (data) {
     return res.status(200).send({ msg: "Successfully Delete" });
   } else {

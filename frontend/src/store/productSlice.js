@@ -3,7 +3,7 @@ import axios from "axios";
 import { notification } from "antd";
 import { SearchOptionMap } from "../Labels";
 
-const productList = createAsyncThunk(
+const getProductList = createAsyncThunk(
   "product/list",
   async ({ page, queryType, query }) => {
     let url;
@@ -20,7 +20,7 @@ const productList = createAsyncThunk(
   }
 );
 
-const productCUD = createAsyncThunk("product/CRUD", async (info) => {
+const productCRUD = createAsyncThunk("product/CRUD", async (info) => {
   const res = await axios({
     url: `http://localhost:3000/api/product/${info?.id ?? ""}`,
     data: info.data,
@@ -32,7 +32,7 @@ const productCUD = createAsyncThunk("product/CRUD", async (info) => {
 const productSlice = createSlice({
   name: "product",
   initialState: {
-    productList: [],
+    getProductList: [],
     queryData: {
       queryType: SearchOptionMap[0].value,
     },
@@ -43,10 +43,10 @@ const productSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(productList.fulfilled, (state, action) => {
-      state.productList = action.payload;
+    builder.addCase(getProductList.fulfilled, (state, action) => {
+      state.getProductList = action.payload;
     });
-    builder.addCase(productCUD.fulfilled, (state, action) => {
+    builder.addCase(productCRUD.fulfilled, (state, action) => {
       if (action.payload.msg) {
         notification["success"]({
           message: `${action.payload.msg}`,
@@ -58,4 +58,4 @@ const productSlice = createSlice({
 
 export default productSlice.reducer;
 export const { getQueryData } = productSlice.actions;
-export { productList, productCUD };
+export { getProductList, productCRUD };

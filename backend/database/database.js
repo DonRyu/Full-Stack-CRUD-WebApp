@@ -32,7 +32,7 @@ class Database {
       return this.data;
     }
   }
-  
+
   /**
    * Gets product data based on the product number
    * @param {string} productNumber - the product number to search for
@@ -68,8 +68,10 @@ class Database {
    * @returns {boolean} - true if successful, false if not
    */
   put(productNumber, productData) {
+    console.log('productNumber',typeof productNumber)
     const newProductList = this.data.map((item) => {
       if (item.productNumber === productNumber) {
+        console.log('00000',productData)
         return {
           ...item,
           ...productData,
@@ -97,6 +99,7 @@ class Database {
     let newProductList = this.data.filter((item) => {
       return item.productNumber !== productNumber;
     });
+    console.log('newProductList',newProductList)
     const jsonString = JSON.stringify(newProductList);
     try {
       fs.writeFileSync(filePath, jsonString);

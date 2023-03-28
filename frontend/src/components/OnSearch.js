@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Input, Select } from "antd";
 import { SearchOptionMap } from "../Labels";
 import { useDispatch, useSelector } from "react-redux";
-import { productList, getQueryData } from "../store/productSlice";
+import { getProductList, getQueryData } from "../store/productSlice";
 import ProductsTotalNumber from "./ProductsTotalNumber";
 const { Search } = Input;
 
@@ -15,7 +15,7 @@ const OnSearch = () => {
     let query = value.trim().replace(/(\s*)/g, "").toLowerCase();
     setLoading(true);
     dispatch(
-      productList({
+      getProductList({
         page: 1,
         queryType: queryInfo.queryType,
         query,

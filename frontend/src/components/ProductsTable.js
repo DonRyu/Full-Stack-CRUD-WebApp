@@ -6,23 +6,23 @@ import OnSearch from "./OnSearch";
 import { labels } from "../Labels";
 import { DeleteOutlined } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
-import { productList, productCUD } from "../store/productSlice";
+import { getProductList, productCRUD } from "../store/productSlice";
 import ProductsPagination from "./ProductsPagination";
 
 const ProductsTable = () => {
-  const List = useSelector((state) => state.products.productList);
+  const List = useSelector((state) => state.products.getProductList);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(productList({ page: 1 }));
+    dispatch(getProductList({ page: 1 }));
   }, []);
 
   const deleteProduct = (productNumber) => {
     dispatch(
-      productCUD({ data: { productNumber }, method: "DELETE" })
+      productCRUD({ id: productNumber, method: "DELETE" })
     ).then((res) => {
       if (res.payload.msg)
-        return dispatch(productList({ page: List.currentPage }));
+        return dispatch(getProductList({ page: List.currentPage }));
     });
   };
 
