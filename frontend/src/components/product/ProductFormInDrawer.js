@@ -9,16 +9,16 @@ import {
   Select,
   notification,
 } from "antd";
-import { labels, MethodologyMap, ErrorMsgMap } from "../../constants";
+import { labels, MethodologyMap } from "../../constants";
 import { PlusOutlined, SettingOutlined } from "@ant-design/icons";
 import ProductDatePicker from "../common/DatePicker";
 import DeveloperTable from "../common/DeveloperTable";
 import { useDispatch } from "react-redux";
 import { getProductList, productCRUD } from "../../store/productSlice";
-import {NAME_VALIDATOR} from "../../helper/index"
+import { NAME_VALIDATOR } from "../../helper/index";
+import {DrawerButtonContainer} from "./Product.style"
 const { Option } = Select;
 const MAX_INPUT_LENGTH = 40;
-
 
 const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
   const [form] = Form.useForm();
@@ -82,18 +82,15 @@ const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
         <Button
           type="primary"
           onClick={() => onOpen()}
-          style={{
-            width: 32,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
+          className={"editButton"}
         >
           <SettingOutlined />
         </Button>
       )}
       <Drawer
-        title={title === labels.Add ? "Add Product" : "Edit Product"}
+        title={
+          title === labels.Add ? labels.AddDrawerTitle : labels.EditDrawerTitle
+        }
         width={window.innerWidth > 900 ? 620 : window.innerWidth}
         onClose={() => onClose()}
         open={visible}
@@ -196,13 +193,7 @@ const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
               </Form.Item>
             </Col>
           </Row>
-          <Row
-            style={{
-              marginTop: 100,
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
+          <DrawerButtonContainer>
             <Form.Item className="drawer-form-buttons">
               <Button onClick={() => onClose()} style={{ marginRight: 8 }}>
                 Cancel
@@ -211,7 +202,7 @@ const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
                 Save
               </Button>
             </Form.Item>
-          </Row>
+          </DrawerButtonContainer>
         </Form>
       </Drawer>
     </>
@@ -219,3 +210,4 @@ const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
 };
 
 export default ProductFormInDrawer;
+

@@ -8,7 +8,9 @@ export const labels = {
   Developers: "Developers",
   StartDate: "Start Date",
   Methodology: "Methodology",
-  Name:"Firstname Lastname"
+  Name:"Firstname Lastname",
+  AddDrawerTitle:"Add Product",
+  EditDrawerTitle:"Edit Product"
 };
 
 export const MethodologyMap = [

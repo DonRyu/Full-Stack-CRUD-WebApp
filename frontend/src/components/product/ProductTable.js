@@ -8,7 +8,7 @@ import { getProductList, productCRUD } from "../../store/productSlice";
 import OnSearch from "../common/OnSearch";
 import ProductPagination from "./ProductPagination";
 import ProductFormInDrawer from "./ProductFormInDrawer";
-import styled from "styled-components";
+import { ProductTableContainer } from "./Product.style";
 
 const ProductsTable = () => {
   const List = useSelector((state) => state.products.getProductList);
@@ -129,12 +129,3 @@ const ProductsTable = () => {
 };
 
 export default ProductsTable;
-
-const ProductTableContainer = styled.div`
-  padding: 35px;
-  .header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 5px;
-  }
-`;

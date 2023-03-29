@@ -22,7 +22,7 @@
           {
             "in": "query",
             "name": "queryType",
-            "description": "The type of column to query (\"scrumMaster\", \"developer\"). The default query type is scrumMaster.",
+            "description": "The type of column to query (\"scrumMasterName\", \"developer\"). The default query type is scrumMaster.",
             "type": "string",
             "enum": ["scrumMasterName", "developer"]
           },
