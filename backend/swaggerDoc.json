@@ -151,7 +151,7 @@
             }
           },
           "400": {
-            "description": "Validation error/ Developer should max 5",
+            "description": "Validation error/ Developer should be max 5",
             "schema": {
               "type": "object",
               "properties": {

@@ -75,6 +75,7 @@ class Database {
    * @returns {boolean} - true if successful, false if not
    */
   put(productNumber, productData) {
+    let count = 0;
     const newProductList = this.data?.map((item) => {
       if (item.productNumber === productNumber) {
         return {
@@ -82,16 +83,19 @@ class Database {
           ...productData,
         };
       } else {
+        count++;
         return item;
       }
     });
-    const jsonString = JSON.stringify(newProductList);
+    if (count === this.data.length) {
+      return 400;
+    }
     try {
-      fs.writeFileSync(filePath, jsonString);
+      fs.writeFileSync(filePath, JSON.stringify(newProductList));
       this.data = newProductList;
       return true;
     } catch (err) {
-      return false;
+      return 500;
     }
   }
 
@@ -101,16 +105,19 @@ class Database {
    * @returns {boolean} - true if successful, false if not
    */
   delete(productNumber) {
-    let newProductList = this.data?.filter((item) => {
-      return item.productNumber !== productNumber;
-    });
-    const jsonString = JSON.stringify(newProductList);
     try {
+      let newProductList = this.data?.filter((item) => {
+        return item.productNumber !== productNumber;
+      });
+      const jsonString = JSON.stringify(newProductList);
+      if (newProductList.length === this.data.length) {
+        return 400;
+      }
       fs.writeFileSync(filePath, jsonString);
       this.data = newProductList;
       return true;
     } catch (err) {
-      return false;
+      return 500;
     }
   }
 
