@@ -1,3 +1,7 @@
+/**
+ * Constant for global varibale 
+ * Containing msg and labels which are globaly use
+ */
 export const labels = {
   Add: "Add",
   Edit: "Edit",

@@ -1,3 +1,7 @@
+/**
+ * Root element of React
+ * Using Redux toolkit to handle state
+ */
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';

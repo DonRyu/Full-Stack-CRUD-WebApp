@@ -1,3 +1,7 @@
+/**
+ * This is collect of css to design product table's and their sub components
+ * Using styled component
+ */
 import styled from "styled-components";
 import { Row } from "antd";
 

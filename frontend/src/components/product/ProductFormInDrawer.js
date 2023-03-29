@@ -25,11 +25,18 @@ const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
   const [visible, setVisible] = React.useState(false);
   const dispatch = useDispatch();
 
+  /**
+   * Close the drawer when user press cancel
+   */
   const onClose = () => {
     setVisible(false);
     form.resetFields();
   };
 
+  /**
+   * Open the drawer when user press Add or setting button
+   * When user want to setting it get product number by props to call the API
+   */
   const onOpen = () => {
     setVisible(true);
     if (productNumber) {
@@ -42,8 +49,14 @@ const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
         form.setFieldsValue({ ...res.payload });
       });
     }
-  };
+  };  
 
+  /**
+  *This function is triggered when the form is submitted.
+  *It checks if at least one developer is selected and then sends a POST or PUT request to add or update a product, respectively.
+  *If the operation is successful, it dispatches a getProductList action to update the product list and resets the form fields.
+    @param {Object} values - The values of the form fields.
+  */
   const onFinish = (values) => {
     if (values.developers.length < 1) {
       notification["error"]({
@@ -75,6 +88,7 @@ const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
 
   return (
     <>
+    {/* Buttons to open drawer */}
       {title === labels.Add ? (
         <Button type="primary" onClick={() => onOpen()}>
           <PlusOutlined />
@@ -89,6 +103,7 @@ const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
           <SettingOutlined />
         </Button>
       )}
+      {/* Drawer form to collect the product data */}
       <Drawer
         title={
           title === labels.Add ? labels.AddDrawerTitle : labels.EditDrawerTitle

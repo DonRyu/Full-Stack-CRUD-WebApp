@@ -1,3 +1,10 @@
+/**
+ * Main table which shows current list of products
+ * User can do CRUD of product
+ * User can see the products per page, each page have 10 products
+ * User can move the page using pagination
+ * User can search the product using search
+ */
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Button, Table, Tag, Popconfirm, Tooltip } from "antd";
@@ -14,10 +21,17 @@ const ProductsTable = () => {
   const List = useSelector((state) => state.products.getProductList);
   const dispatch = useDispatch();
 
+  /**
+   * When the component mount, call first 10 products of List
+   */
   useEffect(() => {
     dispatch(getProductList({ page: 1 }));
   }, []);
 
+  /**
+   * Get the product number (ID of product) and call delete API
+   * @param {number} productNumber
+   */
   const deleteProduct = (productNumber) => {
     dispatch(productCRUD({ id: productNumber, method: "DELETE" })).then(
       (res) => {
@@ -27,6 +41,7 @@ const ProductsTable = () => {
     );
   };
 
+  //Columns of table
   const columns = [
     {
       title: "Product#",
@@ -57,11 +72,13 @@ const ProductsTable = () => {
       dataIndex: "developers",
       render: (developers) => (
         <>
+          {/* Show the developers when user hover the tag */}
           <Tooltip
             title={developers?.map((developer, key) => (
               <div key={key}>{developer}</div>
             ))}
           >
+            {/* Show the developers by tag */}
             {developers?.map((tag, key) => {
               return <Tag key={key}>{tag.toUpperCase()}</Tag>;
             })}
@@ -87,11 +104,13 @@ const ProductsTable = () => {
       render: (_, elm) => {
         return (
           <div style={{ display: "flex", justifyContent: "space-evenly" }}>
+            {/* Drawer component for CRUD product */}
             <ProductFormInDrawer
               title={labels.Edit}
               productNumber={elm.productNumber}
               currentPage={List.currentPage}
             />
+            {/* For deleting, ask user one more time to make sure the data termination */}
             <Popconfirm
               placement="leftTop"
               title={"Delete"}
