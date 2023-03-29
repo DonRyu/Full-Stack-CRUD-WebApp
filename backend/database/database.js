@@ -18,7 +18,6 @@ class Database {
     const dataString = fs.readFileSync(filePath, "utf-8");
     this.data = JSON.parse(dataString);
   }
-
   /**
    * Gets data based on query parameters
    * @param {string} query - search term to filter by
@@ -32,7 +31,6 @@ class Database {
       return this.data;
     }
   }
-
   /**
    * Gets product data based on the product number
    * @param {string} productNumber - the product number to search for
@@ -67,7 +65,6 @@ class Database {
       return false;
     }
   }
-
   /**
    * Updates an existing product in the data
    * @param {string} productNumber - the product number of the product to update
@@ -98,7 +95,6 @@ class Database {
       return 500;
     }
   }
-
   /**
    * Deletes a product from the data
    * @param {string} productNumber - the product number of the product to delete
@@ -120,7 +116,6 @@ class Database {
       return 500;
     }
   }
-
   /**
    * Gets data based on a search query and type of search
    * @param {string} query - the search term to filter by
@@ -146,7 +141,6 @@ class Database {
       return result;
     }
   }
-
   /**
    * Generates a unique product number ID
    * @returns {number} - a unique product number ID
