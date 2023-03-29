@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 const ProductDatePicker = ({ onChange, value, isSetting }) => {
   const getDate = (date) => {
-    console.log('date',date)
+
     onChange?.(date);
   };
   return (

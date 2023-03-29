@@ -45,7 +45,6 @@ const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
   };
 
   const onFinish = (values) => {
-    console.log("values", values);
     if (values.developers.length < 1) {
       notification["error"]({
         message: `Input at least one developer`,
