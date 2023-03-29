@@ -65,7 +65,7 @@ To run without error, you need to install node modules for both frontend and bac
 	* this will list all PID listening on this port, once you have the PID you can terminate it with the following:
 		> sudo lsof -i :3000	
 	* Terminate the PID
-		> kill -9 <PID>
+		> kill -9 PIDNUMBER
 
 
 *You should run backend first and run client
