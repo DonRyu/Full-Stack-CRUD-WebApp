@@ -46,8 +46,7 @@ const ProductsTable = () => {
     {
       title: "Product#",
       dataIndex: "productNumber",
-      width: 80,
-      render: (text) => <a>{text}</a>,
+      width: 80
     },
     {
       title: "Name",
