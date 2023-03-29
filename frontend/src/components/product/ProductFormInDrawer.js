@@ -185,7 +185,7 @@ const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
                 ]}
               >
                 <Select>
-                  {MethodologyMap.map((item, index) => {
+                  {MethodologyMap?.map((item, index) => {
                     return (
                       <Option value={item.value} key={index}>
                         {item.key}
