@@ -29,7 +29,7 @@ const DeveloperTable = () => {
               paddingBottom: 5,
             }}
           >
-            {fields.map(({ key, name, ...restField }) => (
+            {fields?.map(({ key, name }) => (
               <div
                 style={{
                   display: "flex",

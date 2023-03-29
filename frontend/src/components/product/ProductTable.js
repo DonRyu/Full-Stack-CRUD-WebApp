@@ -57,7 +57,7 @@ const ProductsTable = () => {
       render: (developers) => (
         <>
           <Tooltip
-            title={developers.map((developer, key) => (
+            title={developers?.map((developer, key) => (
               <div key={key}>{developer}</div>
             ))}
           >

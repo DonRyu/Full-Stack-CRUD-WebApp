@@ -39,7 +39,7 @@ class Database {
    * @returns {Array} - an array of products that match the product number
    */
   getByProductNumber(productNumber) {
-    const selectedData = this.data.filter((item) => {
+    const selectedData = this.data?.filter((item) => {
       return item.productNumber == productNumber;
     });
     return selectedData[0];
@@ -71,7 +71,7 @@ class Database {
    * @returns {boolean} - true if successful, false if not
    */
   put(productNumber, productData) {
-    const newProductList = this.data.map((item) => {
+    const newProductList = this.data?.map((item) => {
       if (item.productNumber === productNumber) {
         return {
           ...item,
@@ -97,7 +97,7 @@ class Database {
    * @returns {boolean} - true if successful, false if not
    */
   delete(productNumber) {
-    let newProductList = this.data.filter((item) => {
+    let newProductList = this.data?.filter((item) => {
       return item.productNumber !== productNumber;
     });
     const jsonString = JSON.stringify(newProductList);
@@ -118,14 +118,14 @@ class Database {
    */
   getByQuery(query, queryType) {
     if (queryType === SearchOptionMap.ScrumMaster) {
-      const result = this.data.filter((item) => {
+      const result = this.data?.filter((item) => {
         const itemScrumMaster = item.scrumMasterName.replace(/(\s*)/g, "");
         return itemScrumMaster.toLowerCase().includes(query.toLowerCase());
       });
       return result;
     } else if (queryType === SearchOptionMap.Developer) {
-      const result = this.data.filter((item) => {
-        const modifiedDevelopers = item.developers.map((developer) =>
+      const result = this.data?.filter((item) => {
+        const modifiedDevelopers = item.developers?.map((developer) =>
           developer.replace(/(\s*)/g, "").toLowerCase()
         );
         return modifiedDevelopers.some((developer) =>
@@ -143,7 +143,7 @@ class Database {
   getUniqueNumberID() {
     const usedNumbers = new Set();
     let randomNum;
-    let idArr = this.data.map((item) => {
+    let idArr = this.data?.map((item) => {
       return item.productNumber;
     });
     idArr.forEach((element) => usedNumbers.add(element));
