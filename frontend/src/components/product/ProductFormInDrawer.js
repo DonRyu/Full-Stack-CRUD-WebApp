@@ -16,7 +16,7 @@ import DeveloperTable from "../common/DeveloperTable";
 import { useDispatch } from "react-redux";
 import { getProductList, productCRUD } from "../../store/productSlice";
 import { NAME_VALIDATOR } from "../../helper/index";
-import {DrawerButtonContainer} from "./Product.style"
+import { DrawerButtonContainer } from "./Product.style";
 const { Option } = Select;
 const MAX_INPUT_LENGTH = 40;
 
@@ -51,10 +51,12 @@ const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
       });
       return;
     }
+    //Add product
     if (title === labels.Add) {
       dispatch(productCRUD({ data: values, method: "POST" })).then((res) => {
         res.payload?.msg && dispatch(getProductList({ page: 1 }));
       });
+      //Edit product
     } else if (title === labels.Edit) {
       dispatch(
         productCRUD({
@@ -210,4 +212,3 @@ const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
 };
 
 export default ProductFormInDrawer;
-

@@ -8,6 +8,11 @@ export const ProductTableContainer = styled.div`
     justify-content: space-between;
     margin-bottom: 5px;
   }
+  .paginationConatiner{
+    position:absolute;
+    bottom:10px;
+    left:35%;
+  }
   .editButton {
     width: 32px;
     display: flex;

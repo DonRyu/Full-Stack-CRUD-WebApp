@@ -1,3 +1,9 @@
+const {
+  postProductSchema,
+  productIdSchema,
+  putProdcutSchema,
+} = require("./model");
+
 /**
  * Get product data from database based on query and queryType,
  * and return paginated results with pagination metadata.
@@ -35,10 +41,15 @@ const getProduct = (req, res) => {
  * @returns - Product's detail data, or error message
  */
 const getProductData = (req, res) => {
-  const productNumber = req.params.id;
   const database = req.context.database;
-  const data = database.getByProductNumber(productNumber);
-  if (data) {
+  let productNumber;
+  const { error, id_value } = productIdSchema.validate(req.params.id);
+  if (error) {
+    res.status(400).send({ msg: "Please send valid data" });
+    return;
+  }
+  productNumber = id_value;
+  if (database.getByProductNumber(productNumber)) {
     res.status(200).send(data);
   } else {
     return res.status(500).send({ msg: "error" });
@@ -54,8 +65,12 @@ const getProductData = (req, res) => {
  */
 const postProduct = (req, res) => {
   const database = req.context.database;
-  const data = database.post(req.body);
-  if (data) {
+  const { error, value } = postProductSchema.validate(req.body);
+  if (error) {
+    res.status(400).send({ msg: "Please send valid data" });
+    return;
+  }
+  if (database.post(value)) {
     return res.status(200).send({ msg: "Successfully Add" });
   } else {
     return res.status(500).send({ msg: "error" });
@@ -71,9 +86,15 @@ const postProduct = (req, res) => {
  */
 const putProduct = (req, res) => {
   const database = req.context.database;
-  const productNumber = parseInt(req.params.id);
-  const data = database.put(productNumber, req.body);
-  if (data) {
+  let productNumber;
+  const { id_error, id_value } = productIdSchema.validate(req.params.id);
+  const { error, productData } = putProdcutSchema.validate(req.body);
+  if (id_error || error) {
+    res.status(400).send({ msg: "Please send valid data" });
+    return;
+  }
+  productNumber = parseInt(id_value);
+  if (database.put(productNumber, productData)) {
     return res.status(200).send({ msg: "Successfully Edit" });
   } else {
     return res.status(500).send({ msg: "error" });
@@ -88,9 +109,14 @@ const putProduct = (req, res) => {
 */
 const deleteProduct = (req, res) => {
   const database = req.context.database;
-  const productNumber = parseInt(req.params.id);
-  const data = database.delete(productNumber);
-  if (data) {
+  let productNumber;
+  const { error, id_value } = productIdSchema.validate(req.params.id);
+  if (error) {
+    res.status(400).send({ msg: "Please send valid data" });
+    return;
+  }
+  productNumber = parseInt(id_value);
+  if (database.delete(productNumber)) {
     return res.status(200).send({ msg: "Successfully Delete" });
   } else {
     return res.status(500).send({ msg: "error" });

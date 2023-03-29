@@ -117,20 +117,19 @@ class Database {
    * @returns {Array} - an array of products that match the search query and type
    */
   getByQuery(query, queryType) {
+    const qry = query.trim().toLowerCase().replace(/(\s*)/g, "");
+
     if (queryType === SearchOptionMap.ScrumMaster) {
-      const result = this.data?.filter((item) => {
-        const itemScrumMaster = item.scrumMasterName.replace(/(\s*)/g, "");
-        return itemScrumMaster.toLowerCase().includes(query.toLowerCase());
-      });
+      const result = this.data?.filter((item) =>
+        item.scrumMasterName.toLowerCase().includes(qry)
+      );
       return result;
     } else if (queryType === SearchOptionMap.Developer) {
       const result = this.data?.filter((item) => {
         const modifiedDevelopers = item.developers?.map((developer) =>
-          developer.replace(/(\s*)/g, "").toLowerCase()
+          developer.toLowerCase()
         );
-        return modifiedDevelopers.some((developer) =>
-          developer.includes(query.replace(/(\s*)/g, ""))
-        );
+        return modifiedDevelopers.some((developer) => developer.includes(qry));
       });
       return result;
     }

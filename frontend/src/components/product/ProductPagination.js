@@ -19,7 +19,7 @@ const ProductsPagination = () => {
   };
 
   return (
-    <div style={{ position: "absolute", bottom: 10,left:'35%' }}>
+    <div className={"paginationConatiner"}>
       <Pagination
         current={List.currentPage}
         total={List.totalProduct}
