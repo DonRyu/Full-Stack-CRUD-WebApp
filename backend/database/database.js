@@ -39,10 +39,14 @@ class Database {
    * @returns {Array} - an array of products that match the product number
    */
   getByProductNumber(productNumber) {
-    const selectedData = this.data?.filter((item) => {
-      return item.productNumber == productNumber;
-    });
-    return selectedData[0];
+    try {
+      const selectedData = this.data?.filter((item) => {
+        return item.productNumber === productNumber;
+      });
+      return selectedData[0] ?? 400;
+    } catch (err) {
+      return 500;
+    }
   }
   /**
    * Adds a new product to the data

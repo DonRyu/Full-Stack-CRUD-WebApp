@@ -29,8 +29,8 @@
           {
             "in": "query",
             "name": "query",
-            "description": "Lowercase only without spacing. If the user query, it always returns the first 10 values of the total results by query. Pagination is changed to 1. For example, when user is in page 10, user can query developer Alice Kim. It returns first 10 products out of total query results and pagination is moved to 1",
-            "type": "string" 
+            "description": "If the user query, it always returns the first 10 values of the total results by query. Pagination is changed to 1. For example, when user is in page 10, user can query developer Alice Kim. It returns first 10 products out of total query results and pagination is moved to 1",
+            "type": "string"
           }
         ],
         "responses": {
@@ -58,7 +58,7 @@
                       },
                       "startDate": {
                         "type": "string",
-                        "pattern": "^(201[0-9]|202[0-2])\/(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])$",
+                        "pattern": "^(201[0-9]|202[0-2])/(0[1-9]|1[0-2])/(0[1-9]|[12][0-9]|3[01])$",
                         "description": "The start date of the project in the format YYYY/MM/DD."
                       },
                       "developers": {
@@ -120,13 +120,14 @@
                 },
                 "startDate": {
                   "type": "string",
-                  "pattern": "^(201[0-9]|202[0-2])\/(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])$",
+                  "pattern": "^(201[0-9]|202[0-2])/(0[1-9]|1[0-2])/(0[1-9]|[12][0-9]|3[01])$",
                   "description": "The start date of the project in the format YYYY/MM/DD."
                 },
                 "developers": {
                   "type": "array",
                   "items": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Max 5 developers"
                   }
                 },
                 "methodology": {
@@ -140,6 +141,17 @@
         "responses": {
           "200": {
             "description": "Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error/ Developer should max 5",
             "schema": {
               "type": "object",
               "properties": {
@@ -171,8 +183,8 @@
           {
             "in": "path",
             "name": "id",
-            "description": "The ID of the product to retrieve",
-            "type": "integer"
+            "description": "The ID of the product to retrieve"
+         
           }
         ],
         "responses": {
@@ -195,7 +207,7 @@
                 },
                 "startDate": {
                   "type": "string",
-                  "pattern": "^(201[0-9]|202[0-2])\/(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])$",
+                  "pattern": "^(201[0-9]|202[0-2])/(0[1-9]|1[0-2])/(0[1-9]|[12][0-9]|3[01])$",
                   "description": "The start date of the project in the format YYYY/MM/DD."
                 },
                 "developers": {
@@ -207,6 +219,17 @@
                 "methodology": {
                   "type": "string",
                   "enum": ["Agile", "Waterfall"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error/ No such Data in DB",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string"
                 }
               }
             }
@@ -276,6 +299,17 @@
               }
             }
           },
+          "400": {
+            "description": "Validation error, user cannot edit startDate",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string"
+                }
+              }
+            }
+          },
           "500": {
             "description": "Error",
             "schema": {
@@ -312,8 +346,19 @@
               }
             }
           },
+          "400": {
+            "description": "Validation Error, product number is only integer less than 99999999",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string"
+                }
+              }
+            }
+          },
           "500": {
-            "description": "Error",
+            "description": "Internal Server Error",
             "schema": {
               "type": "object",
               "properties": {

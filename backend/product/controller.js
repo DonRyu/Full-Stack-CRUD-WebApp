@@ -1,8 +1,4 @@
-const {
-  postProductSchema,
-  productIdSchema,
-  putProdcutSchema,
-} = require("./model");
+const { productIdSchema, productSchema, putProductSchema } = require("./model");
 
 /**
  * Get product data from database based on query and queryType,
@@ -42,17 +38,22 @@ const getProduct = (req, res) => {
  */
 const getProductData = (req, res) => {
   const database = req.context.database;
-  let productNumber;
-  const { error, id_value } = productIdSchema.validate(req.params.id);
+  let data;
+  const { error, value: productNumber } = productIdSchema.validate(
+    req.params.id
+  );
   if (error) {
     res.status(400).send({ msg: "Please send valid data" });
     return;
   }
-  productNumber = id_value;
-  if (database.getByProductNumber(productNumber)) {
-    res.status(200).send(data);
-  } else {
-    return res.status(500).send({ msg: "error" });
+  data = database.getByProductNumber(productNumber);
+  switch (data) {
+    case 400:
+      return res.status(400).send({ msg: "No such data in database" });
+    case 500:
+      return res.status(500).send({ msg: "error" });
+    default:
+      return res.status(200).send(data);
   }
 };
 
@@ -65,7 +66,7 @@ const getProductData = (req, res) => {
  */
 const postProduct = (req, res) => {
   const database = req.context.database;
-  const { error, value } = postProductSchema.validate(req.body);
+  const { error, value } = productSchema.validate(req.body);
   if (error) {
     res.status(400).send({ msg: "Please send valid data" });
     return;
@@ -86,14 +87,15 @@ const postProduct = (req, res) => {
  */
 const putProduct = (req, res) => {
   const database = req.context.database;
-  let productNumber;
-  const { id_error, id_value } = productIdSchema.validate(req.params.id);
-  const { error, productData } = putProdcutSchema.validate(req.body);
+  const { error: id_error, value: productNumber } = productIdSchema.validate(
+    req.params.id
+  );
+  const { error, value: productData } = putProductSchema.validate(req.body);
+
   if (id_error || error) {
     res.status(400).send({ msg: "Please send valid data" });
     return;
   }
-  productNumber = parseInt(id_value);
   if (database.put(productNumber, productData)) {
     return res.status(200).send({ msg: "Successfully Edit" });
   } else {
@@ -109,13 +111,11 @@ const putProduct = (req, res) => {
 */
 const deleteProduct = (req, res) => {
   const database = req.context.database;
-  let productNumber;
-  const { error, id_value } = productIdSchema.validate(req.params.id);
+  const { error, value: productNumber } = productIdSchema.validate(req.params.id);
   if (error) {
     res.status(400).send({ msg: "Please send valid data" });
     return;
   }
-  productNumber = parseInt(id_value);
   if (database.delete(productNumber)) {
     return res.status(200).send({ msg: "Successfully Delete" });
   } else {

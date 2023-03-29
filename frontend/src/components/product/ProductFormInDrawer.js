@@ -18,7 +18,7 @@ import { getProductList, productCRUD } from "../../store/productSlice";
 import { NAME_VALIDATOR } from "../../helper/index";
 import { DrawerButtonContainer } from "./Product.style";
 const { Option } = Select;
-const MAX_INPUT_LENGTH = 40;
+const MAX_INPUT_LENGTH = 50;
 
 const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
   const [form] = Form.useForm();
@@ -45,6 +45,7 @@ const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
   };
 
   const onFinish = (values) => {
+    console.log("values", values);
     if (values.developers.length < 1) {
       notification["error"]({
         message: `Input at least one developer`,
@@ -60,7 +61,7 @@ const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
     } else if (title === labels.Edit) {
       dispatch(
         productCRUD({
-          data: values,
+          data: { ...values, startDate: undefined },
           method: "PUT",
           id: productNumber,
         })
