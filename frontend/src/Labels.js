@@ -35,4 +35,6 @@ export const SearchOptionMap = [
 
 export const ErrorMsgMap = {
   serverError: "500 Error",
+  validationError: "Enter only alphabetical characters and spaces",
+  developerNameError:"Enter valid developer name"
 };

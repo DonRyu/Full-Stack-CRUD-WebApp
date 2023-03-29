@@ -9,26 +9,16 @@ import {
   Select,
   notification,
 } from "antd";
-import { labels, MethodologyMap } from "../../Labels";
+import { labels, MethodologyMap, ErrorMsgMap } from "../../Labels";
 import { PlusOutlined, SettingOutlined } from "@ant-design/icons";
 import ProductDatePicker from "../common/DatePicker";
 import DeveloperTable from "../common/DeveloperTable";
 import { useDispatch } from "react-redux";
 import { getProductList, productCRUD } from "../../store/productSlice";
+import {NAME_VALIDATOR} from "../../helper/index"
 const { Option } = Select;
 const MAX_INPUT_LENGTH = 40;
-const VALIDATOR = {
-  validator: (_, value) => {
-    const pattern = /^[a-zA-Z\s]$/;
-    if (!pattern.test(value)) {
-      return Promise.reject(
-        "Please enter only alphabetical characters and spaces"
-      );
-    }
-    return Promise.resolve();
-  },
-  validateTrigger: "onBlur",
-};
+
 
 const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
   const [form] = Form.useForm();
@@ -124,7 +114,7 @@ const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
                   {
                     required: true,
                     message: "Please enter a product name",
-                  }
+                  },
                 ]}
               >
                 <Input
@@ -141,12 +131,10 @@ const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
                   {
                     required: true,
                   },
+                  NAME_VALIDATOR,
                 ]}
               >
-                <Input
-                  placeholder={labels.Name}
-                  maxLength={MAX_INPUT_LENGTH}
-                />
+                <Input placeholder={labels.Name} maxLength={MAX_INPUT_LENGTH} />
               </Form.Item>
             </Col>
           </Row>
@@ -159,12 +147,10 @@ const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
                   {
                     required: true,
                   },
+                  NAME_VALIDATOR,
                 ]}
               >
-                <Input
-                  placeholder={labels.Name}
-                  maxLength={MAX_INPUT_LENGTH}
-                />
+                <Input placeholder={labels.Name} maxLength={MAX_INPUT_LENGTH} />
               </Form.Item>
             </Col>
             <Col span={12}>

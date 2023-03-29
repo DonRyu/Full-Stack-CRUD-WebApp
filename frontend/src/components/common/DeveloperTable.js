@@ -1,7 +1,8 @@
 import React from "react";
 import { Button, Form, Input, notification } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
-import {labels} from "../../Labels"
+import { labels,ErrorMsgMap } from "../../Labels";
+
 
 const DeveloperTable = () => {
   const addDevloper = (fields, add) => {
@@ -47,6 +48,19 @@ const DeveloperTable = () => {
                     {
                       required: true,
                       message: " ",
+                    },
+                    {
+                      validator: (_, value) => {
+                        const pattern = /^[a-zA-Z\s]+$/;
+                        if (!pattern.test(value)) {
+                          notification["error"]({
+                            message: `${ErrorMsgMap.developerNameError}`,
+                          });
+                          return Promise.reject();
+                        }
+                        return Promise.resolve();
+                      },
+                      validateTrigger: "onBlur",
                     },
                   ]}
                 >
