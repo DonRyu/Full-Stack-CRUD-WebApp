@@ -1,3 +1,9 @@
+/**
+ *This component renders a search bar that allows users to search for products based on different criteria such as the product name or its developers.
+ *It dispatches getProductList and getQueryData actions to retrieve products matching the search query and updates the query information state accordingly.
+ *Users can enter search keywords and select the type of search from a dropdown list.
+ *Additionally, a ProductsTotalNumber component is included to display the total number of products matching the search query.
+ */
 import React, { useState } from "react";
 import { Input, Select } from "antd";
 import { SearchOptionMap } from "../../constants";
@@ -12,6 +18,11 @@ const OnSearch = () => {
   const queryInfo = useSelector((state) => state.products.queryData);
   const [loading, setLoading] = useState(false);
 
+  /**
+   * Handles the search button click event and dispatches the getProductList and getQueryData actions
+   * with the current query type and search query to fetch matching products and update the query data.
+   * @param {string} value - The search query value entered by the user.
+   */
   const onPress = (value) => {
     let query = value.trim().replace(/(\s*)/g, "").toLowerCase();
     setLoading(true);
@@ -26,12 +37,16 @@ const OnSearch = () => {
     setLoading(false);
   };
 
+  /**
+   * Validates the search input and prevents the user from entering non-alphabetic characters and exceeding 40 characters limit.
+   * @param {object} e - The key press event object.
+   */
   const validateInput = (e) => {
     const pattern = /[^a-zA-Z\s]/gi;
-    if (pattern.test(e.key)) {
+    if (pattern.test(e.key)) { // User can type only alphabet
       e.preventDefault();
     }
-    if (e.target.value.length >= 40) {
+    if (e.target.value.length >= 40) { // User can not type more then 40 letters
       e.preventDefault();
     }
   };
