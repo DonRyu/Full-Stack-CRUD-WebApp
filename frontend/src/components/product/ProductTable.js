@@ -5,7 +5,7 @@
  * User can move the page using pagination
  * User can search the product using search
  */
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { Button, Table, Tag, Popconfirm, Tooltip } from "antd";
 import { labels } from "../../constants";
@@ -24,9 +24,13 @@ const ProductsTable = () => {
   /**
    * When the component mount, call first 10 products of List
    */
-  useEffect(() => {
+  const dispatchGetProductList = useCallback(() => {
     dispatch(getProductList({ page: 1 }));
-  }, []);
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatchGetProductList();
+  }, [dispatchGetProductList]);
 
   /**
    * Get the product number (ID of product) and call delete API
@@ -46,7 +50,7 @@ const ProductsTable = () => {
     {
       title: "Product#",
       dataIndex: "productNumber",
-      width: 80
+      width: 80,
     },
     {
       title: "Name",
