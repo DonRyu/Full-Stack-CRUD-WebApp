@@ -24,16 +24,16 @@ const OnSearch = () => {
    * @param {string} value - The search query value entered by the user.
    */
   const onPress = (value) => {
-    let query = value.trim().replace(/(\s*)/g, "").toLowerCase();
+    let query = value?.trim().replace(/(\s*)/g, "").toLowerCase();
     setLoading(true);
     dispatch(
       getProductList({
         page: 1,
-        queryType: queryInfo.queryType,
+        queryType: queryInfo?.queryType,
         query,
       })
     );
-    dispatch(getQueryData({ queryType: queryInfo.queryType, query }));
+    dispatch(getQueryData({ queryType: queryInfo?.queryType, query }));
     setLoading(false);
   };
 
