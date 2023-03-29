@@ -57,7 +57,7 @@ To run without error, you need to install node modules for both frontend and bac
 * Make sure you type 'npm start' at root folder
 * Make sure there are no other applications are running on port 3000, 3001
 * If npm start is not working, you need to run each backend and frontend using different command at the root folder
-	* At the root folder type npm run server and confirm server is running on port 3000
+	* At the root folder, type npm run server and confirm server is running on port 3000
 		 > npm run server 
 	* Open another terminal, type 'npm run client' and confirm that application is running on localhost:3001
 		> npm run client
