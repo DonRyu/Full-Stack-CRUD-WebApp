@@ -183,8 +183,9 @@
           {
             "in": "path",
             "name": "id",
-            "description": "The ID of the product to retrieve"
-         
+            "description": "The ID of the product to retrieve",
+            "required": true,
+            "type": "integer"
           }
         ],
         "responses": {
