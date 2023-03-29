@@ -51,6 +51,7 @@ const OnSearch = () => {
         enterButton="Search"
         onSearch={onPress}
         onKeyPress={validateInput}
+        allowClear
       />
       <ProductsTotalNumber />
     </OnSearchContainer>
