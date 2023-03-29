@@ -28,7 +28,7 @@ This repository consists of a frontend and a backend folder.
 To run without error, you need to install node modules for both frontend and backend.
 
 **Important!**
-* Make sure your computer has Node.js and the version should be above version of  17.x  
+* Make sure your computer has Node.js and the version should be above 17.x  
 * Please follow the order of the installation
 
 
