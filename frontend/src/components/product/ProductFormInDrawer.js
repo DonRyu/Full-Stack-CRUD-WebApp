@@ -9,7 +9,7 @@ import {
   Select,
   notification,
 } from "antd";
-import { labels, MethodologyMap, ErrorMsgMap } from "../../Labels";
+import { labels, MethodologyMap, ErrorMsgMap } from "../../constants";
 import { PlusOutlined, SettingOutlined } from "@ant-design/icons";
 import ProductDatePicker from "../common/DatePicker";
 import DeveloperTable from "../common/DeveloperTable";

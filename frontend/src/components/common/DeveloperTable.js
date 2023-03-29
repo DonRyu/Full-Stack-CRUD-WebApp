@@ -1,8 +1,8 @@
 import React from "react";
 import { Button, Form, Input, notification } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
-import { labels,ErrorMsgMap } from "../../Labels";
-
+import { labels, ErrorMsgMap } from "../../constants";
+import styled from "styled-components";
 
 const DeveloperTable = () => {
   const addDevloper = (fields, add) => {
@@ -16,32 +16,15 @@ const DeveloperTable = () => {
   };
 
   return (
-    <>
-      <div style={{ paddingBlock: 4 }}>Developers</div>
+    <DeveloperTableContainer>
+      <div className={"title"}>Developers</div>
       <Form.List name={"developers"} initialValue={[null]}>
         {(fields, { add, remove }) => (
-          <div
-            style={{
-              borderRadius: 6,
-              border: "1px solid #d9d9d9",
-              height: 164,
-              overflow: "auto",
-              paddingBottom: 5,
-            }}
-          >
+          <div className={"table"}>
             {fields?.map(({ key, name }) => (
-              <div
-                style={{
-                  display: "flex",
-                  width: "100%",
-                  justifyContent: "space-evenly",
-                  marginTop: 10,
-                  height: 33,
-                }}
-                key={key}
-              >
+              <div className={"row"} key={key}>
                 <Form.Item
-                  style={{ height: 33, width: "80%" }}
+                  className={"col"}
                   key={name}
                   name={name}
                   rules={[
@@ -68,7 +51,7 @@ const DeveloperTable = () => {
                 </Form.Item>
                 <Form.Item>
                   <MinusCircleOutlined
-                    style={{ fontSize: 18 }}
+                    className={"deleteIcon"}
                     onClick={() => {
                       remove(name);
                     }}
@@ -77,11 +60,7 @@ const DeveloperTable = () => {
               </div>
             ))}
             <Button
-              style={{
-                position: "absolute",
-                bottom: -32,
-                width: "96.5%",
-              }}
+              className={"addButton"}
               onClick={() => addDevloper(fields, add)}
             >
               Add
@@ -89,8 +68,40 @@ const DeveloperTable = () => {
           </div>
         )}
       </Form.List>
-    </>
+    </DeveloperTableContainer>
   );
 };
 
 export default DeveloperTable;
+
+const DeveloperTableContainer = styled.div`
+  .title{
+    padding-block:4px;
+  }
+  .table{
+    border: 1px solid #d9d9d9;
+    border-radius: 6px;
+    height:164px;
+    overflow: auto;
+    padding-bottom: 5px;
+    .row{
+      display: flex;
+      width: 100%;
+      justify-content: space-evenly;
+      margin-Top: 10px;
+      height: 33px;
+    }
+    .col{
+      height:33px;
+      width:80%;
+    }
+    .deleteIcon{
+      font-size:18px;
+    }
+    .addButton{
+      position: absolute;
+      bottom: -32px;
+      width: 96.5%;
+    }
+  }
+`;

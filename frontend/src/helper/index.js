@@ -1,4 +1,4 @@
-import {ErrorMsgMap} from "../Labels"
+import {ErrorMsgMap} from "../constants"
 
 export const NAME_VALIDATOR = {
     validator: (_, value) => {

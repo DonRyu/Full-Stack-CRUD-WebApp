@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { notification } from "antd";
-import { SearchOptionMap, ErrorMsgMap } from "../Labels";
+import { SearchOptionMap, ErrorMsgMap } from "../constants";
 
 const Api = axios.create({
   baseURL: "http://localhost:3000/api",

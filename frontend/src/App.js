@@ -1,20 +1,21 @@
 import React from "react";
 import ProductTable from "./components/product/ProductTable";
+import styled from "styled-components";
 
 function App() {
   return (
-    <div
-      style={{
-        width:'100%',
-        backgroundColor: "#f4f4f4",
-        minWidth: 1180,
-        minHeight: 740,
-        position: "relative",
-      }}
-    >
+    <MainContainer>
       <ProductTable />
-    </div>
+    </MainContainer>
   );
 }
 
 export default App;
+
+const MainContainer = styled.div`
+  width: 100%;
+  background-color: #f4f4f4;
+  min-width: 1180px;
+  min-height: 740px;
+  position: relative;
+`;

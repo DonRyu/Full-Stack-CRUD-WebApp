@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Input, Select } from "antd";
-import { SearchOptionMap } from "../../Labels";
+import { SearchOptionMap } from "../../constants";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductList, getQueryData } from "../../store/productSlice";
 import ProductsTotalNumber from "../product/ProductTotalNumber";
+import styled from "styled-components";
 const { Search } = Input;
 
 const OnSearch = () => {
@@ -36,21 +37,15 @@ const OnSearch = () => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-evenly",
-        alignItems: "center",
-      }}
-    >
+    <OnSearchContainer>
       <Select
+        className={"selectBox"}
         onChange={(value) => dispatch(getQueryData({ queryType: value }))}
         defaultValue={SearchOptionMap[0].value}
-        style={{ width: 140, height: "100%", marginRight: 5 }}
         options={SearchOptionMap}
       />
       <Search
-        style={{ width: 300 }}
+        className={"searchBox"}
         disabled={loading}
         placeholder="input search text"
         enterButton="Search"
@@ -58,8 +53,22 @@ const OnSearch = () => {
         onKeyPress={validateInput}
       />
       <ProductsTotalNumber />
-    </div>
+    </OnSearchContainer>
   );
 };
 
 export default OnSearch;
+
+const OnSearchContainer = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  .selectBox {
+    width: 140px;
+    height: 100%;
+    margin-right: 5px;
+  }
+  .searchBox {
+    width: 300px;
+  }
+`;

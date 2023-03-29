@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Button, Table, Tag, Popconfirm, Tooltip } from "antd";
-import { labels } from "../../Labels";
+import { labels } from "../../constants";
 import { DeleteOutlined } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
 import { getProductList, productCRUD } from "../../store/productSlice";
 import OnSearch from "../common/OnSearch";
 import ProductPagination from "./ProductPagination";
 import ProductFormInDrawer from "./ProductFormInDrawer";
+import styled from "styled-components";
 
 const ProductsTable = () => {
   const List = useSelector((state) => state.products.getProductList);
@@ -18,12 +19,12 @@ const ProductsTable = () => {
   }, []);
 
   const deleteProduct = (productNumber) => {
-    dispatch(
-      productCRUD({ id: productNumber, method: "DELETE" })
-    ).then((res) => {
-      if (res.payload.msg)
-        return dispatch(getProductList({ page: List.currentPage }));
-    });
+    dispatch(productCRUD({ id: productNumber, method: "DELETE" })).then(
+      (res) => {
+        if (res.payload.msg)
+          return dispatch(getProductList({ page: List.currentPage }));
+      }
+    );
   };
 
   const columns = [
@@ -109,18 +110,8 @@ const ProductsTable = () => {
   ];
 
   return (
-    <div
-      style={{
-        padding: 35,
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          marginBottom: 5,
-        }}
-      >
+    <ProductTableContainer>
+      <div className={"header"}>
         <OnSearch />
         <ProductFormInDrawer title={labels.Add} />
       </div>
@@ -133,8 +124,17 @@ const ProductsTable = () => {
         rowKey={(item) => item.productNumber}
       />
       <ProductPagination />
-    </div>
+    </ProductTableContainer>
   );
 };
 
 export default ProductsTable;
+
+const ProductTableContainer = styled.div`
+  padding: 35px;
+  .header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+  }
+`;
