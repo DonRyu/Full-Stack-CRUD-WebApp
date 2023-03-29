@@ -81,7 +81,7 @@ const DeveloperTableContainer = styled.div`
   .table{
     border: 1px solid #d9d9d9;
     border-radius: 6px;
-    height:164px;
+    height:220px;
     overflow: auto;
     padding-bottom: 5px;
     .row{
