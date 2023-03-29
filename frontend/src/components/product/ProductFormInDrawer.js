@@ -1,3 +1,8 @@
+/**
+ * Drawer component to CRUD product data.
+ * when the title props are add => Add drawer
+ * when the title props are edit nad have productNumber => Efid drawer
+ */
 import React from "react";
 import {
   Button,
