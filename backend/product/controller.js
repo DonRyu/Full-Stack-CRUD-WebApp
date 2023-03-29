@@ -6,7 +6,7 @@ const { productIdSchema, productSchema, putProductSchema } = require("./model");
  *
  * @param {*} req - Express request object
  * @param {*} res - Express response object
- * @returns - Paginated product data with metadata, or error message
+ * @returns - Paginated product data with metadata, or Success message(200), server error(500)
  */
 const getProduct = (req, res) => {
   const database = req.context.database;
@@ -34,7 +34,7 @@ const getProduct = (req, res) => {
  *
  * @param {*} req - Express request object
  * @param {*} res - Express response object
- * @returns - Success message, or error message
+ * @returns - Success message(200), server error(500), validation error(400)
  */
 const postProduct = (req, res) => {
   const database = req.context.database;
@@ -55,7 +55,7 @@ const postProduct = (req, res) => {
  *
  * @param {*} req - Express request object
  * @param {*} res - Express response object
- * @returns - Product's detail data, or error message
+ * @returns - Product's detail data, or Success message(200), server error(500), validation error(400)
  */
 const getProductData = (req, res) => {
   const database = req.context.database;
@@ -83,7 +83,7 @@ const getProductData = (req, res) => {
  *
  * @param {*} req - Express request object
  * @param {*} res - Express response object
- * @returns - Success message, or error message
+ * @returns - Success message, or Success message(200), server error(500), validation error(400)
  */
 const putProduct = (req, res) => {
   const database = req.context.database;
@@ -112,7 +112,7 @@ const putProduct = (req, res) => {
 * Delete a product from the database.
 @param {*} req - The HTTP request object.
 @param {*} res - The HTTP response object.
-@returns A success message or an error message.
+@returns A success message or an Success message(200), server error(500), validation error(400)
 */
 const deleteProduct = (req, res) => {
   const database = req.context.database;
