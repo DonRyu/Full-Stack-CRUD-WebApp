@@ -62,10 +62,10 @@ To run without error, you need to install node modules for both frontend and bac
 	* Open another terminal, type 'npm run client' and confirm that application is running on localhost:3001
 		> npm run client
 * If the port is already used
-	> sudo lsof -i :3000	
-		this will list all PID listening on this port, once you have the PID you can terminate it with the following:
-	> kill -9 <PID>
-				
+	* this will list all PID listening on this port, once you have the PID you can terminate it with the following:
+		> sudo lsof -i :3000	
+		> kill -9 <PID>
+
 
 *You should run backend first and run client
 
