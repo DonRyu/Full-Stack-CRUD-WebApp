@@ -16,20 +16,20 @@
           {
             "in": "query",
             "name": "page",
-            "description": "Default 1, User can change the pagination of total products list without query and query type . Each page has 10 products. If the query results are bigger than 10, user can change the pagination of products list from the query results.",
+            "description": "Default page is 1, User can change the pagination of total products list without query and query type . Each page has 10 products. If the query results are bigger than 10, user can change the pagination of products list from the query results.",
             "type": "integer"
           },
           {
             "in": "query",
             "name": "queryType",
-            "description": "The type of column to query (\"scrumMasterName\", \"developer\"). The default query type is scrumMaster.",
+            "description": "The type of column to query (\"scrumMasterName\", \"developer\"). The default query type is scrumMasterName.",
             "type": "string",
             "enum": ["scrumMasterName", "developer"]
           },
           {
             "in": "query",
             "name": "query",
-            "description": "If the user query, it always returns the first 10 values of the total results by query. Pagination is changed to 1. For example, when user is in page 10, user can query developer Alice Kim. It returns first 10 products out of total query results and pagination is moved to 1",
+            "description": "When the user search, it always returns the first 10 values of the total results by query. Pagination is changed to 1. For example, when user is in page 10, user can query developer Alice Kim. It returns first 10 products out of total query results and pagination is moved to 1",
             "type": "string"
           }
         ],
