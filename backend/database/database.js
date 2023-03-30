@@ -123,10 +123,11 @@ class Database {
    * @returns {Array} - an array of products that match the search query and type
    */
   getByQuery(query, queryType) {
+    const qry = query.toLowerCase().replace(/(\s*)/g, "")
     if (queryType === SearchOptionMap.ScrumMaster) {
       const result = this.data?.filter((item) => {
-        const itemScrumMaster = item.scrumMasterName.replace(/(\s*)/g, "");
-        return itemScrumMaster.toLowerCase().includes(query.toLowerCase());
+        const itemScrumMaster = item.scrumMasterName.replace(/(\s*)/g, "").toLowerCase();
+        return itemScrumMaster.includes(qry);
       });
       return result;
     } else if (queryType === SearchOptionMap.Developer) {
@@ -135,7 +136,7 @@ class Database {
           developer.replace(/(\s*)/g, "").toLowerCase()
         );
         return modifiedDevelopers.some((developer) =>
-          developer.includes(query.replace(/(\s*)/g, ""))
+          developer.includes(qry)
         );
       });
       return result;
