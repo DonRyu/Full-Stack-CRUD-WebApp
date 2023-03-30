@@ -5,10 +5,8 @@
   "license": "MIT",
   "scripts": {
     "server": "nodemon backend/server.js",
-    "client": "cd frontend && npm start",
-    "client:mac":"cd frontend && npm start:mac",
-    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
-    "start:mac":"concurrently --kill-others-on-fail \"npm run server\" \"npm run client:mac\""
+    "client": "cd frontend && npm run start",
+    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
   },
   "dependencies": {
     "concurrently": "^7.6.0",
