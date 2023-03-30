@@ -28,6 +28,39 @@ This repository consists of a frontend and a backend folder.
 To run without error, you need to install node modules for both frontend and backend.
 
 **Important!**
+* 2023 Mar 29, react-create-app has warning issue.
+	[1] (node:59920) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+	[1] (Use `node --trace-deprecation ...` to show where the warning was created)
+	[1] (node:59920) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+
+This not affect my solution's function because is react-create-app's issue however if you don't want to see above warning. please follow my instruction.
+After you install the frontend's node module.
+1.Please go to react-scripts folder
+2.Find config > webpackDevServer.config.js
+3.In the file, you can see two functions 'onBeforeSetupMiddleware' , 'onAfterSetupMiddleware'
+4.Remove them and copy below code.
+
+setupMiddlewares: (middlewares, devServer) => {
+      if (!devServer) {
+          throw new Error('webpack-dev-server is not defined')
+      }
+  
+      if (fs.existsSync(paths.proxySetup)) {
+          require(paths.proxySetup)(devServer.app)
+      }
+  
+      middlewares.push(
+          evalSourceMapMiddleware(devServer),
+          redirectServedPath(paths.publicUrlOrPath),
+          noopServiceWorkerMiddleware(paths.publicUrlOrPath)
+      )
+  
+      return middlewares;
+}
+
+5.Make sure there are no warnings
+
+
 * Make sure your computer has Node.js and the version should be above 17.x  
 * Please follow the order of the installation
 
