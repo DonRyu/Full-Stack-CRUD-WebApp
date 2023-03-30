@@ -34,34 +34,7 @@ To run without error, you need to install node modules for both frontend and bac
 	[1] (Use `node --trace-deprecation ...` to show where the warning was created)
 	[1] (node:59920) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
 
-**This doesn't affect my solution's function because this is react-create-app's unsolved warning issue** however if you don't want to see above warning. Please follow my instruction.
-After you install the frontend's node module.
-1. Please go to react-scripts folder
-2. Find config > webpackDevServer.config.js
-3. In the file, you can see two functions 'onBeforeSetupMiddleware' , 'onAfterSetupMiddleware'
-4. Remove them and copy below code.
-
-setupMiddlewares: (middlewares, devServer) => {
-      if (!devServer) {
-          throw new Error('webpack-dev-server is not defined')
-      }
-  
-      if (fs.existsSync(paths.proxySetup)) {
-          require(paths.proxySetup)(devServer.app)
-      }
-  
-      middlewares.push(
-          evalSourceMapMiddleware(devServer),
-          redirectServedPath(paths.publicUrlOrPath),
-          noopServiceWorkerMiddleware(paths.publicUrlOrPath)
-      )
-  
-      return middlewares;
-}
-
-5. Make sure there are no warnings
-
-
+**This doesn't affect my solution's function because this is react-create-app's unsolved warning issue** however if you don't want to see above warning. There is a solution at troubleshoot section
 * Make sure your computer has Node.js and the version should be above 17.x  
 * Please follow the order of the installation
 
@@ -87,6 +60,33 @@ setupMiddlewares: (middlewares, devServer) => {
 6. It will run at http://localhost:3001/ on your browser
 
 ## Troubleshooting 
+
+* create-react-app's warning issue solution
+
+1. After you installed both frontend and backend's node modules Please go to react-scripts folder
+2. Find config > webpackDevServer.config.js
+3. In the file, you can see two functions 'onBeforeSetupMiddleware' , 'onAfterSetupMiddleware'
+4. Remove them and copy below code.
+
+setupMiddlewares: (middlewares, devServer) => {
+      if (!devServer) {
+          throw new Error('webpack-dev-server is not defined')
+      }
+  
+      if (fs.existsSync(paths.proxySetup)) {
+          require(paths.proxySetup)(devServer.app)
+      }
+  
+      middlewares.push(
+          evalSourceMapMiddleware(devServer),
+          redirectServedPath(paths.publicUrlOrPath),
+          noopServiceWorkerMiddleware(paths.publicUrlOrPath)
+      )
+  
+      return middlewares;
+}
+
+5. Make sure there are no warnings
 
 * Make sure you type 'npm start' at root folder
 * Make sure there are no other applications are running on port 3000, 3001
