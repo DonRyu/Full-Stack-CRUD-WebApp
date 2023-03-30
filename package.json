@@ -6,7 +6,9 @@
   "scripts": {
     "server": "nodemon backend/server.js",
     "client": "cd frontend && npm start",
-    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
+    "client:mac":"cd frontend && npm start:mac",
+    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "start:mac":"concurrently --kill-others-on-fail \"npm run server\" \"npm run client:mac\""
   },
   "dependencies": {
     "concurrently": "^7.6.0",
