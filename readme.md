@@ -104,7 +104,7 @@ To run without error, you need to install node modules for both frontend and bac
 			> kill -9 PIDNUMBER
 
 
-*You should run backend first and run client
+**You should run backend first and run client**
 
 
 ## Swagger Documentation
