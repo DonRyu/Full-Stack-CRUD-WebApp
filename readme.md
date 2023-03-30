@@ -88,9 +88,11 @@ setupMiddlewares: (middlewares, devServer) => {
 
 * Make sure there are no warnings
 
-2. Make sure you type 'npm start' at root folder
-3. Make sure there are no other applications are running on port 3000, 3001
-4. If npm start is not working, you need to run each backend and frontend using different command at the root folder
+2. Normal issue's solutions
+
+* Make sure you type 'npm start' at root folder
+* Make sure there are no other applications are running on port 3000, 3001
+* If npm start is not working, you need to run each backend and frontend using different command at the root folder
 	* At the root folder, type npm run server and confirm server is running on port 3000
 		 > npm run server 
 	* Open another terminal, type 'npm run client' and confirm that application is running on localhost:3001
