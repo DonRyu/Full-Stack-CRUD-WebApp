@@ -67,24 +67,26 @@ To run without error, you need to install node modules for both frontend and bac
 	* Find config > webpackDevServer.config.js
 	* In the file, you can see two functions 'onBeforeSetupMiddleware' , 'onAfterSetupMiddleware'
 	* Remove them and copy below code.
-
+		```
 		setupMiddlewares: (middlewares, devServer) => {
-    		  if (!devServer) {
-         		 throw new Error('webpack-dev-server is not defined')
+     		 if (!devServer) {
+          	throw new Error('webpack-dev-server is not defined')
      		 }
   
-     		 if (fs.existsSync(paths.proxySetup)) {
-         	 require(paths.proxySetup)(devServer.app)
-      	}
+      if (fs.existsSync(paths.proxySetup)) {
+          require(paths.proxySetup)(devServer.app)
+      }
   
-     		 middlewares.push(
-         	 evalSourceMapMiddleware(devServer),
-         	 redirectServedPath(paths.publicUrlOrPath),
-         	 noopServiceWorkerMiddleware(paths.publicUrlOrPath)
-     	 )
+      middlewares.push(
+          evalSourceMapMiddleware(devServer),
+          redirectServedPath(paths.publicUrlOrPath),
+          noopServiceWorkerMiddleware(paths.publicUrlOrPath)
+      )
   
-     	 return middlewares;
-   		}
+      return middlewares;
+   }
+		```
+	
 
 * Make sure there are no warnings
 
