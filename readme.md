@@ -34,7 +34,7 @@ To run without error, you need to install node modules for both frontend and bac
 	[1] (Use `node --trace-deprecation ...` to show where the warning was created)
 	[1] (node:59920) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
 
-**This not affects my solution because is react-create-app's unsolved warning issue** however if you don't want to see above warning. Please follow my instruction.
+**This doesn't affect my solution's function because this is react-create-app's unsolved warning issue** however if you don't want to see above warning. Please follow my instruction.
 After you install the frontend's node module.
 1. Please go to react-scripts folder
 2. Find config > webpackDevServer.config.js
