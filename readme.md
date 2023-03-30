@@ -66,7 +66,7 @@ To run without error, you need to install node modules for both frontend and bac
 	* After you installed both frontend and backend's node modules Please go to react-scripts folder
 	* Find config > webpackDevServer.config.js
 	* In the file, you can see two functions 'onBeforeSetupMiddleware' , 'onAfterSetupMiddleware'
-	* Remove them and copy below code under the return scopde.
+	* Remove them and copy below code under the return scope.
 	```
 	setupMiddlewares: (middlewares, devServer) => {
       if (!devServer) {
