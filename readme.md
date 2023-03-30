@@ -63,7 +63,7 @@ To run without error, you need to install node modules for both frontend and bac
 
 1. create-react-app's warning issue solution
 
-	* After you installed both frontend and backend's node modules Please go to react-scripts folder
+	* After you installed both frontend and backend's node modules Please go to frontend directory> node modules> react-scripts 
 	* Find config > webpackDevServer.config.js
 	* In the file, you can see two functions 'onBeforeSetupMiddleware' , 'onAfterSetupMiddleware'
 	* Remove them and copy below code under the return scope.
