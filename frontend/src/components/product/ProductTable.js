@@ -19,6 +19,7 @@ import { ProductTableContainer } from "./Product.style";
 
 const ProductsTable = () => {
   const List = useSelector((state) => state.products.getProductList);
+  const queryInfo = useSelector((state) => state.products.queryData);
   const dispatch = useDispatch();
 
   /**
@@ -40,7 +41,13 @@ const ProductsTable = () => {
     dispatch(productCRUD({ id: productNumber, method: "DELETE" })).then(
       (res) => {
         if (res.payload.msg)
-          return dispatch(getProductList({ page: List.currentPage }));
+          return dispatch(
+            getProductList({
+              page: List.currentPage,
+              queryType: queryInfo?.queryType,
+              query: queryInfo?.query,
+            })
+          );
       }
     );
   };

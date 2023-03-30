@@ -18,7 +18,7 @@ import { labels, MethodologyMap } from "../../constants";
 import { PlusOutlined, SettingOutlined } from "@ant-design/icons";
 import ProductDatePicker from "../common/DatePicker";
 import DeveloperTable from "../common/DeveloperTable";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { getProductList, productCRUD } from "../../store/productSlice";
 import { NAME_VALIDATOR } from "../../helper/index";
 import { DrawerButtonContainer } from "./Product.style";
@@ -28,6 +28,7 @@ const MAX_INPUT_LENGTH = 50;
 const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
   const [form] = Form.useForm();
   const [visible, setVisible] = React.useState(false);
+  const queryInfo = useSelector((state) => state.products.queryData);
   const dispatch = useDispatch();
 
   /**
@@ -54,7 +55,7 @@ const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
         form.setFieldsValue({ ...res.payload });
       });
     }
-  };  
+  };
 
   /**
   *This function is triggered when the form is submitted.
@@ -83,7 +84,14 @@ const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
           id: productNumber,
         })
       ).then((res) => {
-        res.payload?.msg && dispatch(getProductList({ page: currentPage }));
+        res.payload?.msg &&
+          dispatch(
+            getProductList({
+              page: currentPage,
+              queryType: queryInfo?.queryType,
+              query: queryInfo?.query,
+            })
+          );
       });
     }
 
@@ -93,7 +101,7 @@ const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
 
   return (
     <>
-    {/* Buttons to open drawer */}
+      {/* Buttons to open drawer */}
       {title === labels.Add ? (
         <Button type="primary" onClick={() => onOpen()}>
           <PlusOutlined />
