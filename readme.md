@@ -83,8 +83,8 @@ To run without error, you need to install node modules for both frontend and bac
           noopServiceWorkerMiddleware(paths.publicUrlOrPath)
       )
   
-      return middlewares;
-   }
+         return middlewares;
+      }
 	```
 	
 
