@@ -28,7 +28,7 @@ This repository consists of a frontend and a backend folder.
 To run without error, you need to install node modules for both frontend and backend.
 
 **Important!**
-* 2023 Mar 29, react-create-app has warning issue.
+* 2023 Mar 29,  "react-scripts": "5.0.1", has warning issue.
 
 	[1] (node:59920) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
 	[1] (Use `node --trace-deprecation ...` to show where the warning was created)
