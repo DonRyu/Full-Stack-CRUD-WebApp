@@ -61,7 +61,7 @@ To run without error, you need to install node modules for both frontend and bac
 
 ## Troubleshooting 
 
-1. create-react-app's warning issue solution
+1.  "react-scripts": "5.0.1" warning issue solution
 
 	* After you installed both frontend and backend's node modules Please go to frontend directory> node modules> react-scripts 
 	* Find config > webpackDevServer.config.js
