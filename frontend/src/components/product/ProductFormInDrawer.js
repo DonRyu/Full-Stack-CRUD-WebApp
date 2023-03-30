@@ -149,6 +149,7 @@ const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
                 rules={[
                   {
                     required: true,
+                    message: "Please enter a product owner",
                   },
                   NAME_VALIDATOR,
                 ]}
@@ -165,6 +166,7 @@ const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
                 rules={[
                   {
                     required: true,
+                    message: "Please enter a scrum master",
                   },
                   NAME_VALIDATOR,
                 ]}
@@ -179,6 +181,7 @@ const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
                 rules={[
                   {
                     required: true,
+                    message: "Please select start date",
                   },
                 ]}
               >
