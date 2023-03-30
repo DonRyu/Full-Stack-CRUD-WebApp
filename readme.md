@@ -35,10 +35,10 @@ To run without error, you need to install node modules for both frontend and bac
 
 This not affect my solution's function because is react-create-app's issue however if you don't want to see above warning. please follow my instruction.
 After you install the frontend's node module.
-1.Please go to react-scripts folder
-2.Find config > webpackDevServer.config.js
-3.In the file, you can see two functions 'onBeforeSetupMiddleware' , 'onAfterSetupMiddleware'
-4.Remove them and copy below code.
+1. Please go to react-scripts folder
+2. Find config > webpackDevServer.config.js
+3. In the file, you can see two functions 'onBeforeSetupMiddleware' , 'onAfterSetupMiddleware'
+4. Remove them and copy below code.
 
 setupMiddlewares: (middlewares, devServer) => {
       if (!devServer) {
@@ -58,7 +58,7 @@ setupMiddlewares: (middlewares, devServer) => {
       return middlewares;
 }
 
-5.Make sure there are no warnings
+5. Make sure there are no warnings
 
 
 * Make sure your computer has Node.js and the version should be above 17.x  
