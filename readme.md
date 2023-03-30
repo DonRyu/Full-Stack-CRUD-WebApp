@@ -67,7 +67,7 @@ To run without error, you need to install node modules for both frontend and bac
 	* Find config > webpackDevServer.config.js
 	* In the file, you can see two functions 'onBeforeSetupMiddleware' , 'onAfterSetupMiddleware'
 	* Remove them and copy below code.
-		```
+	```
 		setupMiddlewares: (middlewares, devServer) => {
      		 if (!devServer) {
           	throw new Error('webpack-dev-server is not defined')
@@ -84,8 +84,8 @@ To run without error, you need to install node modules for both frontend and bac
       )
   
       return middlewares;
-   }
-		```
+  	  }
+	```
 	
 
 * Make sure there are no warnings
