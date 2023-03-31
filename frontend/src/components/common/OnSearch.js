@@ -63,7 +63,7 @@ const OnSearch = () => {
       <Search
         className={"searchBox"}
         disabled={loading}
-        placeholder="input search text"
+        placeholder="input text only"
         enterButton="Search"
         onSearch={onPress}
         onKeyPress={validateInput}
