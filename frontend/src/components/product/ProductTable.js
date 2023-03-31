@@ -40,14 +40,16 @@ const ProductsTable = () => {
   const deleteProduct = (productNumber) => {
     dispatch(productCRUD({ id: productNumber, method: "DELETE" })).then(
       (res) => {
-        if (res.payload.msg)
-          return dispatch(
+        if (res.payload.msg) {
+          let page = (List.pageData.length === 1&& 10< List.totalProduct)? List.currentPage - 1: List.currentPage;
+          dispatch(
             getProductList({
-              page: List.currentPage,
+              page,
               queryType: queryInfo?.queryType,
               query: queryInfo?.query,
             })
           );
+        }
       }
     );
   };
