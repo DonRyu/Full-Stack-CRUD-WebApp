@@ -15,7 +15,7 @@ export const ProductTableContainer = styled.div`
   .paginationConatiner{
     position:absolute;
     bottom:10px;
-    left:35%;
+    left:45%;
   }
   .editButton {
     width: 32px;
