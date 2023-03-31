@@ -22,6 +22,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getProductList,
   productCRUD,
+  getQueryData,
 } from "../../store/productSlice";
 import { NAME_VALIDATOR } from "../../helper/index";
 import { DrawerButtonContainer } from "./Product.style";
@@ -80,10 +81,9 @@ const ProductFormInDrawer = ({ title, productNumber, currentPage }) => {
           dispatch(
             getProductList({
               page: 1,
-              queryType: queryInfo?.queryType,
-              query: queryInfo?.query,
             })
           );
+        dispatch(getQueryData({ ...queryInfo, query: undefined }));
       });
       //Edit product
     } else if (title === labels.Edit) {

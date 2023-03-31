@@ -20,7 +20,8 @@ const getProductList = createAsyncThunk(
   async ({ page, queryType, query }) => {
     let url;
     if (queryType && query) {
-      url = `/product?page=${page}&queryType=${queryType}&query=${query}`;
+      let validQry = query?.trim().replace(/(\s*)/g, "").toLowerCase();
+      url = `/product?page=${page}&queryType=${queryType}&query=${validQry}`;
     } else {
       url = `/product?page=${page}`;
     }

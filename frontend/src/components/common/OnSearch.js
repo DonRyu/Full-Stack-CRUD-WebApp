@@ -23,17 +23,16 @@ const OnSearch = () => {
    * with the current query type and search query to fetch matching products and update the query data.
    * @param {string} value - The search query value entered by the user.
    */
-  const onPress = (value) => {
-    let query = value?.trim().replace(/(\s*)/g, "").toLowerCase();
+  const onPress = (query) => {
     setLoading(true);
     dispatch(
       getProductList({
         page: 1,
         queryType: queryInfo?.queryType,
-        query,
+        query
       })
     );
-    dispatch(getQueryData({ queryType: queryInfo?.queryType, query }));
+    dispatch(getQueryData({ queryType: queryInfo?.queryType, query}));
     setLoading(false);
   };
 
@@ -43,10 +42,12 @@ const OnSearch = () => {
    */
   const validateInput = (e) => {
     const pattern = /[^a-zA-Z\s]/gi;
-    if (pattern.test(e.key)) { // User can type only alphabet
+    if (pattern.test(e.key)) {
+      // User can type only alphabet
       e.preventDefault();
     }
-    if (e.target.value.length >= 40) { // User can not type more then 40 letters
+    if (e.target.value.length >= 40) {
+      // User can not type more then 40 letters
       e.preventDefault();
     }
   };
@@ -66,6 +67,10 @@ const OnSearch = () => {
         enterButton="Search"
         onSearch={onPress}
         onKeyPress={validateInput}
+        onChange={(e) =>
+          dispatch(getQueryData({ ...queryInfo, query: e.target.value }))
+        }
+        value={queryInfo.query}
         allowClear
       />
       <ProductsTotalNumber />
