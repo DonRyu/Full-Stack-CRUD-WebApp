@@ -1,4 +1,4 @@
-# Dongheon-Ryu-IS24-full-stack-competition-req97073
+# full-stack-competition-req97073
 
 * Frontend: React.js, Javascript
 * Backend: Node.js Express, Javascript
