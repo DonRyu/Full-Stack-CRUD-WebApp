@@ -1,4 +1,4 @@
-# full-stack-competition-req97073
+# full-stack-competition
 
 * Frontend: React.js, Javascript
 * Backend: Node.js Express, Javascript
