@@ -1,4 +1,5 @@
-# full-stack-competition
+# Full-Stack-CRUD-WebApp
+
 
 * Frontend: React.js, Javascript
 * Backend: Node.js Express, Javascript
