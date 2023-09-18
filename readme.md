@@ -1,5 +1,6 @@
 # Full-Stack-CRUD-WebApp
 
+![Full-Stack-CRUD-WebApp](CRUD.gif)
 
 * Frontend: React.js, Javascript
 * Backend: Node.js Express, Javascript
