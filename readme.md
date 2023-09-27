@@ -29,17 +29,6 @@ Root folder
 This repository consists of a frontend and a backend folder. 
 To run without error, you need to install node modules for both frontend and backend.
 
-**Important!**
-* 2023 Mar 29,  "react-scripts": "5.0.1", has warning issue when do react-scripts start.
-
-	[1] (node:59920) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please 		use the 'setupMiddlewares' option.
-
-	[1] (node:59920) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please 	use the 'setupMiddlewares' option.
-
-**This doesn't affect my solution's function because this is react-create-app "5.0.1" unsolved warning issue** however if you don't want to see above warning. There is a solution at troubleshoot section
-* Make sure your computer has Node.js and the version should be above 16.x  
-* Please follow the order of the installation
-
 
 ### Order of the installation
 
